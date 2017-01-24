@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-for file in *
+for file in *trimmed.fastq
 do
-  fastqc $file
+   fastqc $file
 done
