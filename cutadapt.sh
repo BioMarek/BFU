@@ -3,6 +3,8 @@
 module add python27-modules-gcc
 module add python27-modules-intel
 
+cd /storage/brno7-cerit/home/marek_bfu/smRNA/raw_sequences
+
 for file in *.fastq
 do
   cp $file $SCRATCH
