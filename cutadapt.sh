@@ -5,7 +5,7 @@ module add python27-modules-intel
 
 for file in *.fastq
 do
-  mv $file $SCRATCH
+  cp $file $SCRATCH
 done
 
 cd $SCRATCH
