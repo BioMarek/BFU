@@ -16,5 +16,6 @@ do
   cutadapt -a TGGAATTCTCGGGTGCCAAGG -m 1 -o ${file:0:12}_trimmed.fastq $file
 done
 
-mv * /storage/brno7-cerit/home/marek_bfu/smRNA
+mkdir /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
+mv * /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
 rm -rf *
