@@ -2,16 +2,16 @@
 #
 
 QT_THRESHOLD=5
-DISC_SHORT=15
 QF_THRESHOLD=10 # Threshold for quality filtering
 QF_PERC=85 # Minimal percentage of bases with $QF_THRESHOLD
 QUALITY=33 # Phred coding of input files
+DISC_SHORT=15
 DISC_LONG=40 # because of 30 something peak
 INPUT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
 OUTPUT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/filtered
 
 mkdir $OUTPUT_DIR
-cd /$INPUT_DIR
+cd $INPUT_DIR
 
 module add python27-modules-gcc  
 module add python27-modules-intel
