@@ -5,7 +5,7 @@ cd /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
 
 for file in *trimmed.fastq
 do
-   cp *.fastq $SCRATCH
+   cp $file $SCRATCH
 done
 
 cd $SCRATCH
