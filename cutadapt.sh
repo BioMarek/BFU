@@ -11,6 +11,7 @@ do
 done
 
 cd $SCRATCH
+mkdir /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
 
 for file in *.fastq
 do
@@ -19,5 +20,4 @@ do
   mv ${file:0:12}_trimmed.fastq /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
 done
 
-mkdir /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
 rm -rf *
