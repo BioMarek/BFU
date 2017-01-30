@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 mkdir /storage/brno7-cerit/home/marek_bfu/smRNA/discarded
+cd /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
 
 for file in *trimmed.fastq
 do
