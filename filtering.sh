@@ -24,12 +24,11 @@ done
 
 cd $SCRATCH
 
-for sample in *
+for file in *
 do
 	# Cutadapt quality trimming, N bases removal and length filtering
 	# for quality filtering we need Phred coding +33, otherwise --quality-base=$QUALITY
-	cutadapt --quality-cutoff $QT_THRESHOLD,$QT_THRESHOLD --trim-n --max-n=0 --minimum-length $DISC_SHORT --maximum-length $DISC_LONG -o ${file:0:12}_filtered.fastq $sample
-
+	cutadapt --quality-cutoff $QT_THRESHOLD,$QT_THRESHOLD --trim-n --max-n=0 --minimum-length $DISC_SHORT --maximum-length $DISC_LONG -o ${file:0:12}_filtered.fastq $file
 	# Fastx-toolkit quality filtering; to use gz as input/output https://www.biostars.org/p/83237/
 	# Cutadapt can trim only ends of the reads. To filter sequences with low qualitys in the middle, we need to use FastX
 	fastq_quality_filter -Q $QUALITY -q $QF_THRESHOLD -p $QF_PERC -z -o ${file:0:12}_mirna.fastq ${file:0:12}_filtered.fastq
