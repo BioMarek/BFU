@@ -1,7 +1,4 @@
 # Used to extract miRNA belonging to specific species from miRBase fasta file
 
-# awk - WRONG
-awk /'Nicotiana/ {for(i=1; i<=2; i++) {getline; print}}' mature.fa > Nicotiana_miRNA.fa
-
 # sed
-sed -n '/>nta/{p;n;p;n}' mature.fa > Nicotiana_miRNA.fa
+sed -n '/>nta/{p;n;p}' mature.fa > Nicotiana_miRNA.fa
