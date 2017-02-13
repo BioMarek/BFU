@@ -1,0 +1,4 @@
+# metacentrum SAMtools
+
+module add samtools-1.2
+samtools
