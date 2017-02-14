@@ -35,7 +35,14 @@ done
 # second version
 # maybe use -c for counting
 # -w select only exact matches
-cat Nicotiana_miRNA_DNA.fa | while IFS= read -r line 
-do
-  grep -w '$line' H11_A_ATCACG.txt > pok.txt
-done
+#cat $PROJECT_DIR/reference/Nicotiana_miRNA_DNA.fa | while IFS= read -r line 
+#do
+#  grep -w '$line' H11_A_ATCACG.txt > pok.txt
+#done
+
+#!/bin/bash
+names="/storage/brno7-cerit/home/marek_bfu/smRNA/reference/Nicotiana_miRNA_DNA.fa"
+grades="/storage/brno7-cerit/home/marek_bfu/smRNA/collapsed/H11_A_ATCACG.txt"
+grep -fi "${names}" "${grades}"
+
+
