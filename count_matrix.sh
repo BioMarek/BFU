@@ -15,10 +15,12 @@ cd $INPUT_DIR
 for file in *.fastq.gz
 do
   # sed removes evrything but sequences; uniq counts how many sequences of each type there is, sort sorts numericaly in reverse order
+  # pok is temporary file
   gunzip $file > pok
   sed -n 'n;p;n;n;' pok | sort | uniq -c | sort -n -r > $OUTPUT_DIR/${file:0:12}.txt
   # chmod sets access right so that only owner can work with file
   chmod 700 $OUTPUT_DIR/${file:0:12}.txt
+  rm pok
 done
 
 # -F interpret pattern as a list of fixed strings
