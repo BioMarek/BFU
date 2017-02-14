@@ -1,7 +1,12 @@
 #! /bin/bash
 #
-mkdir /storage/brno7-cerit/home/marek_bfu/smRNA/fastqc_after_trim
-cd /storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
+
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
+DATASET_DIR=$PROJECT_DIR/trimmed # path to input raw sequences
+OUTPUT_DIR=$PROJECT_DIR/fastqc_after_trim # path to output sequences
+
+mkdir $OUTPUT_DIR
+cd $DATASET_DIR
 
 for file in *trimmed.fastq
 do
@@ -16,5 +21,5 @@ do
    fastqc $file  
 done
 
-cp *.zip /storage/brno7-cerit/home/marek_bfu/smRNA/fastqc_after_trim
+cp *.zip $OUTPUT_DIR
 rm -rf *
