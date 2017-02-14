@@ -1,7 +1,7 @@
 #! /bin/bash
 #
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/
-INPUT_DIR=$PROJECT_DIR/trimmed
+INPUT_DIR=$PROJECT_DIR/filterred
 OUTPUT_DIR=$PROJECT_DIR/collapsed
 
 mkdir $OUTPUT_DIR
@@ -15,7 +15,7 @@ cd $INPUT_DIR
 for file in *.fastq
 do
   # sed removes evrything but sequences; uniq counts how many sequences of each type there is, sort sorts numericaly in reverse order
-  sed -n 'n;p;n;n;' $file | sort | uniq -c | sort -n -r > $OUTPUT_DIR/${file:0:12}.txt
+  gunzip $file | sed -n 'n;p;n;n;' | sort | uniq -c | sort -n -r > $OUTPUT_DIR/${file:0:12}.txt
   # chmod sest acces right so that only owner can work with file
   chmod 700 $OUTPUT_DIR/${file:0:12}.txt
 done
