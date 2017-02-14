@@ -1,7 +1,7 @@
 #! /bin/bash
 #
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/
-INPUT_DIR=$PROJECT_DIR/filterred
+INPUT_DIR=$PROJECT_DIR/filtered
 OUTPUT_DIR=$PROJECT_DIR/collapsed
 
 mkdir $OUTPUT_DIR
