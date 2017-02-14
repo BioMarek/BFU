@@ -41,8 +41,15 @@ done
 #done
 
 #!/bin/bash
-names="/storage/brno7-cerit/home/marek_bfu/smRNA/reference/Nicotiana_miRNA_DNA.fa"
-grades="/storage/brno7-cerit/home/marek_bfu/smRNA/collapsed/H11_A_ATCACG.txt"
-grep -fi "${names}" "${grades}"
+#names="/storage/brno7-cerit/home/marek_bfu/smRNA/reference/Nicotiana_miRNA_DNA.fa"
+#grades="/storage/brno7-cerit/home/marek_bfu/smRNA/collapsed/H11_A_ATCACG.txt"
+#grep -fi "${names}" "${grades}"
+
+#!/bin/bash
+while read line; do
+  grep -w "$line" /storage/brno7-cerit/home/marek_bfu/smRNA/collapsed/H11_A_ATCACG.txt
+done < /storage/brno7-cerit/home/marek_bfu/smRNA/reference/Nicotiana_miRNA_DNA.fa > pok.txt
+
+grep -f /storage/brno7-cerit/home/marek_bfu/smRNA/reference/Nicotiana_miRNA_DNA.fa /storage/brno7-cerit/home/marek_bfu/smRNA/collapsed/H11_A_ATCACG.txt > pok.txt
 
 
