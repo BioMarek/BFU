@@ -14,8 +14,9 @@ cd $INPUT_DIR
 # sequencing files colapsing something like tally
 for file in *.fastq
 do
-  # sed removes evrything but sequences; uniq counts how many sequences of each type there is, sort sorts numerycaly in reverse order
+  # sed removes evrything but sequences; uniq counts how many sequences of each type there is, sort sorts numericaly in reverse order
   sed -n 'n;p;n;n;' $file | sort | uniq -c | sort -n -r > $OUTPUT_DIR/${file:0:12}.txt
+  chmod 700 $OUTPUT_DIR/${file:0:12}.txt
 done
 
 # -F interpret pattern as a list of fixed strings
