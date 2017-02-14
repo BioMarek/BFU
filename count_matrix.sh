@@ -12,15 +12,12 @@ cd $INPUT_DIR
 #sed -n 'n;p;' Nicotiana_miRNA.fa | sort -u | tr U T > Nicotiana_miRNA_DNA.fa
 
 # sequencing files colapsing something like tally
-for file in *.fastq.gz
+for file in *.fastq
 do
   # sed removes evrything but sequences; uniq counts how many sequences of each type there is, sort sorts numericaly in reverse order
-  # pok is temporary file
-  gunzip $file > pok
-  sed -n 'n;p;n;n;' pok | sort | uniq -c | sort -n -r > $OUTPUT_DIR/${file:0:12}.txt
+  sed -n 'n;p;n;n;' file | sort | uniq -c | sort -n -r > $OUTPUT_DIR/${file:0:12}.txt
   # chmod sets access right so that only owner can work with file
   chmod 700 $OUTPUT_DIR/${file:0:12}.txt
-  rm pok
 done
 
 # -F interpret pattern as a list of fixed strings
