@@ -1,4 +1,4 @@
-#! bin/bash/
+#! /bin/bash
 #
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/
 INPUT_DIR=$PROJECT_DIR/trimmed
