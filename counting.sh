@@ -15,6 +15,7 @@ do
    
    # awk prints lengths of sequencs; uniq counts the sequences and number of couts; sort sorts numericaly based on second column
    awk '{print length}' ${file:0:12}_discarded_fasta.fasta | sort | uniq -c | sort -n -k 2 > $OUTPUT_DIR/${file:0:12}_counts.txt
+   # chmod sest acces right so that only owner can work with file
    chmod 700 $OUTPUT_DIR/${file:0:12}.txt
    rm ${file:0:12}_discarded_fasta.fasta
 done
