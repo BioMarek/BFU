@@ -37,5 +37,5 @@ done
 # -w select only exact matches
 cat Nicotiana_miRNA_DNA.fa | while IFS= read -r line 
 do
-  grep -w '$line' H11_A_ATCACG.txt
+  grep -w '$line' H11_A_ATCACG.txt > pok.txt
 done
