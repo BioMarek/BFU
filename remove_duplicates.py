@@ -7,7 +7,7 @@ for seq_record in SeqIO.parse("Nicotiana_miRNA_D.fa", "fasta"):
     print(seq_record.seq)
     if seq_record.seq not in sequences:
         sequences.append(seq_record.seq)
-        final_result = (seq_record.description + '\n' + seq_record.seq + '\n')
+        final_result = (">" seq_record.description + '\n' + seq_record.seq + '\n')
         f_result.write(str(final_result))
 
 print(len(sequences))
