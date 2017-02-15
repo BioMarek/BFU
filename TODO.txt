@@ -1,3 +1,4 @@
+make fastX work
 create desription of pipeline
   decide what will be done in python and what in bash
   modify python scripts so they take arguments and cen be run by metacentrum servers
