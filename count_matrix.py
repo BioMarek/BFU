@@ -1,3 +1,10 @@
+#######################################################################################################################
+###INFORMATION ABOUT THE SCRIPT###
+# The script takes preprocessed sequencing file (see pipeline) and creates count matrix for DESeq2 analysis. Commonly
+# used tools designed to od this are having difficulties to process data from Nicotiana tabacum or plants in general.
+
+#######################################################################################################################
+###SCRIPT BODY###
 from Bio import SeqIO
 import datetime
 
@@ -16,9 +23,10 @@ for seq_record in SeqIO.parse("Nicotiana_miRNA_D.fa", "fasta"):
         # sequence itself, I have the input file prepared in correct format
         sequence = line.split()
         if sequence[1] == seq_record.seq:
-            # I use final result variable because I want to print it on screen and into file
-            final_result = (seq_record.id + ',' + sequence[0] + '\n')
-            print(final_result)
+            # I use final result variable because I want to print it on screen and into file, also it has to be string 
+            # to write it in file
+            final_result = seq_record.id + ',' + sequence[0] + '\n'
+            # print(final_result)  just for our information
             f_result.write(final_result)
             break
     # for-else design, very useful, if there is no sequence found and end of file is reached we can print 0
@@ -26,7 +34,6 @@ for seq_record in SeqIO.parse("Nicotiana_miRNA_D.fa", "fasta"):
         final_result = (seq_record.id + ',0\n')
         print(final_result)
         f_result.write(final_result)
-
 
 f_result.close()
 f_input.close()
