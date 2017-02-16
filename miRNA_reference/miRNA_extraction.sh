@@ -6,9 +6,8 @@
 
 ##############################################################################################################################
 ##SPECIFY DATA VARIABLES###
-SPECIES_ID=">nta" # !!!test this!!!
+SPECIES_ID=">nta" # >nta is unique identificator for Nicotiana tabacum miRNAs !!!TEST THIS!!!
 
 ##############################################################################################################################
 ###SCRIPT BODY###
-# >nta is unique identificator for Nicotiana tabacum miRNAs
 sed -n '/$SPECIES_ID/{p;n;p}' mature.fa > Nicotiana_miRNA.fa
