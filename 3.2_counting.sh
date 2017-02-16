@@ -2,7 +2,7 @@
 #
 
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
-DATASET_DIR=$PROJECT_DIR/trimmed # path to input raw sequences
+DATASET_DIR=$PROJECT_DIR/filtered # path to input raw sequences
 OUTPUT_DIR=$PROJECT_DIR/counts # path to output sequences
 
 mkdir $OUTPUT_DIR
