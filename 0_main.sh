@@ -1,5 +1,13 @@
 #! /bin/bash
 #
+#######################################################################################################################
+###INFORMATION ABOUT THE SCRIPT###
+# This script runs the pipeline
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/
+cd $PROJECT_DIR
+
+#######################################################################################################################
+###SCRIPT BODY###
 for file in *.sh
 do
   chmod 700 $file
