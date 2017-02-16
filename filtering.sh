@@ -37,7 +37,7 @@ do
 	# for quality filtering we need Phred coding +33, otherwise --quality-base=$QUALITY
 	cutadapt --quality-cutoff $QT_THRESHOLD,$QT_THRESHOLD --trim-n --max-n=0 --minimum-length $DISC_SHORT --maximum-length $DISC_LONG -o ${file:0:12}_filtered.fastq.gz $file
 	# Cutadapt can trim only ends of the reads. To filter sequences with low qualitys in the middle, we need to use FastX
-	gunzip -c ${file:0:12}_filtered.fastq.gz | fastq_quality_filter -Q $QUALITY -q $QF_THRESHOLD -p $QF_PERC -z -o ${file:0:12}_mirna.fastq ${file:0:12}_filtered.fastq
+	gunzip -c ${file:0:12}_filtered.fastq.gz | fastq_quality_filter -Q $QUALITY -q $QF_THRESHOLD -p $QF_PERC -o ${file:0:12}_mirna.fastq ${file:0:12}_filtered.fastq
 	mv ${file:0:12}_filtered.fastq $OUTPUT_DIR
 	mv ${file:0:12}_mirna.fastq $OUTPUT_DIR
 done
