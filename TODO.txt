@@ -6,3 +6,4 @@ create desription of pipeline
 learn how to use branches in github
 unify script comments
 improve DESeq2
+more miRNA databases; analyze nicotiana, arabidopsis, solanace miRNAs
