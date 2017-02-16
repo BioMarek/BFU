@@ -1,6 +1,8 @@
-make fastX work
+make fastX work - DONE
+  why it works taht way?
 create desription of pipeline
   decide what will be done in python and what in bash
-  modify python scripts so they take arguments and cen be run by metacentrum servers
+  modify python scripts so they take arguments and can be run by metacentrum servers
 learn how to use branches in github
 unify script comments
+improve DESeq2
