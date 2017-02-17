@@ -4,7 +4,7 @@ IT'S FUCKED UP! REPAIR IT!!!
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The script counts lengths of sequences so we can make histogram
+# The script counts length distribution of sequences so we can make histogram
 
 #######################################################################################################################
 ##SPECIFY DATA VARIABLES###
@@ -28,7 +28,7 @@ for file in *_discarded_fasta.fasta
 do
    # awk prints lengths of sequencs; uniq counts the sequences and number of couts; sort sorts numericaly based on second column
    awk '{print length}' $file | sort | uniq -c | sort -n -k 2 > $OUTPUT_DIR/${file:0:12}_counts.txt
-   # chmod sest acces right so that only owner can work with file
+   # chmod sets access right so that only owner can work with file
    chmod 700 $OUTPUT_DIR/${file:0:12}.txt
    rm ${file:0:12}_discarded_fasta.fasta
 done
