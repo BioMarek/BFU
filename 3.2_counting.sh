@@ -1,4 +1,4 @@
-IT'S FUCKED UP! REPAIR IT!!!
+# IT'S FUCKED UP! REPAIR IT!!!
 
 #!/bin/bash
 #
