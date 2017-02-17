@@ -6,7 +6,7 @@
 
 #######################################################################################################################
 ##SPECIFY DATA VARIABLES###
-PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 DATASET_DIR=$PROJECT_DIR/filtered # path to input sequences
 OUTPUT_DIR=$PROJECT_DIR/fastqc_after_filt # path to output sequences
 
@@ -23,6 +23,7 @@ done
 cd $SCRATCH
 module add fastQC-0.10.1
 
+# STDIN for FastQC doesn't so work we have to decompress files
 for file in *mirna.fastq.gz
 do
    gzip -d $file 
@@ -33,5 +34,5 @@ do
    fastqc $file
 done
 
-cp *.zip $OUTPUT_DIR
+mv *.zip $OUTPUT_DIR
 rm -rf *
