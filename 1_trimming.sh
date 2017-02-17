@@ -26,7 +26,7 @@ done
 cd $SCRATCH
 mkdir $OUTPUT_DIR
 
-for file in *.fastq
+for file in *.fastq.gz
 do
   # cuts adapter and tosses everything shorter than 1 base
   cutadapt -a $ADAPTER -m 1 -o ${file:0:12}_trimmed.fastq.gz $file
