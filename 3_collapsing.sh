@@ -14,7 +14,7 @@ cd $INPUT_DIR
 #######################################################################################################################
 ###SCRIPT BODY###
 # sequencing files colapsing something like tally
-for file in *.fastq.gz
+for file in *mirna.fastq.gz
 do
   # gunzip -c unpacks wihout modifying the input file and sends result to STDOUT; sed removes evrything but sequences; 
   # uniq counts how many sequences of each type there is (first sort is there because uniq requires adjacent matching lines); 
