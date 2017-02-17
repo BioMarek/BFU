@@ -7,7 +7,7 @@
 #######################################################################################################################
 ##SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
-DATASET_DIR=$PROJECT_DIR/trimmed # path to input raw sequences
+DATASET_DIR=$PROJECT_DIR/filtered # path to input sequences
 OUTPUT_DIR=$PROJECT_DIR/fastqc_after_trim # path to output sequences
 
 #######################################################################################################################
@@ -15,7 +15,7 @@ OUTPUT_DIR=$PROJECT_DIR/fastqc_after_trim # path to output sequences
 mkdir $OUTPUT_DIR
 cd $DATASET_DIR
 
-for file in *trimmed.fastq
+for file in *trimmed.fastq.gz
 do
    cp $file $SCRATCH
 done
@@ -25,7 +25,7 @@ module add fastQC-0.10.1
 
 for file in *trimmed.fastq
 do
-   fastqc $file  
+   gunzip -c $file | fastqc # test this 
 done
 
 cp *.zip $OUTPUT_DIR
