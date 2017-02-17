@@ -2,18 +2,18 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The script collapses identical sequeces to sinlge one while keeping information about number of reads
+# The script collapses identical sequeces to sinlge one while keeping information about number of reads, somethying
+# like Tally http://wwwdev.ebi.ac.uk/enright-dev/kraken/reaper/src/reaper-latest/doc/tally.html
 
-PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/
-INPUT_DIR=$PROJECT_DIR/filtered
-OUTPUT_DIR=$PROJECT_DIR/collapsed
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/ # path to project dir
+INPUT_DIR=$PROJECT_DIR/filtered # path to input filtered sequences
+OUTPUT_DIR=$PROJECT_DIR/collapsed # path to output sequences
 
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
 
 #######################################################################################################################
 ###SCRIPT BODY###
-# sequencing files colapsing something like tally
 for file in *mirna.fastq.gz
 do
   # gunzip -c unpacks wihout modifying the input file and sends result to STDOUT; sed removes evrything but sequences; 
