@@ -12,9 +12,9 @@ QF_PERC=85 # Minimal percentage of bases with $QF_THRESHOLD
 QUALITY=33 # Phred coding of input files
 DISC_SHORT=15 # trim shorater tahn
 DISC_LONG=40 # trim longer than, it that high because of because of 30 something peak in nicotiana
-PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
-INPUT_DIR=$PROJECT_DIR/trimmed
-OUTPUT_DIR=$PROJECT_DIR/filtered
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
+INPUT_DIR=$PROJECT_DIR/trimmed # path to input sequences without adapters
+OUTPUT_DIR=$PROJECT_DIR/filtered # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
@@ -36,6 +36,7 @@ for file in *.fastq.gz
 do
 	# Cutadapt quality trimming, N bases removal and length filtering
 	# for quality filtering we need Phred coding +33, otherwise --quality-base=$QUALITY
+	# !!!CHECK WHETHER GOOD IDEA AND HOW CUTADAPT TRIMING WORKS!!!
 	cutadapt --quality-cutoff $QT_THRESHOLD,$QT_THRESHOLD --trim-n --max-n=0 --minimum-length $DISC_SHORT --maximum-length $DISC_LONG -o ${file:0:12}_filtered.fastq.gz $file
 	# Cutadapt can trim only ends of the reads. To filter sequences with low qualitys in the middle, we need to use FastX
 	gunzip -c ${file:0:12}_filtered.fastq.gz | fastq_quality_filter -Q $QUALITY -q $QF_THRESHOLD -p $QF_PERC -z -o ${file:0:12}_mirna.fastq.gz
