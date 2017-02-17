@@ -18,7 +18,7 @@ module add python27-modules-intel
 
 cd $DATASET_DIR
 
-for file in *.fastq
+for file in *.fastq.gz
 do
   cp $file $SCRATCH
 done
@@ -29,7 +29,7 @@ mkdir $OUTPUT_DIR
 for file in *.fastq
 do
   # cuts adapter and tosses everything shorter than 1 base
-  cutadapt -a $ADAPTER -m 1 -o ${file:0:12}_trimmed.fastq $file
+  cutadapt -a $ADAPTER -m 1 -o ${file:0:12}_trimmed.fastq.gz $file
   mv ${file:0:12}_trimmed.fastq $OUTPUT_DIR
 done
 
