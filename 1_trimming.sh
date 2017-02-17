@@ -30,7 +30,7 @@ for file in *.fastq.gz
 do
   # cuts adapter and tosses everything shorter than 1 base
   cutadapt -a $ADAPTER -m 1 -o ${file:0:12}_trimmed.fastq.gz $file
-  mv ${file:0:12}_trimmed.fastq $OUTPUT_DIR
+  mv ${file:0:12}_trimmed.fastq.gz $OUTPUT_DIR
 done
 
 rm -rf *
