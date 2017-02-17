@@ -1,7 +1,6 @@
 #! /bin/bash
 #
 #######################################################################################################################
-
 ###INFORMATION ABOUT THE SCRIPT###
 # The script removes sequences that are too short or long and performs quality filtering using FASTX
 
@@ -11,10 +10,11 @@ QT_THRESHOLD=5
 QF_THRESHOLD=10 # Threshold for quality filtering
 QF_PERC=85 # Minimal percentage of bases with $QF_THRESHOLD
 QUALITY=33 # Phred coding of input files
-DISC_SHORT=15
-DISC_LONG=40 # because of 30 something peak
-INPUT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/trimmed
-OUTPUT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/filtered
+DISC_SHORT=15 # trim shorater tahn
+DISC_LONG=40 # trim longer than, it that high because of because of 30 something peak in nicotiana
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
+INPUT_DIR=$PROJECT_DIR/trimmed
+OUTPUT_DIR=$PROJECT_DIR/filtered
 
 #######################################################################################################################
 ###SCRIPT BODY###
@@ -39,6 +39,7 @@ do
 	cutadapt --quality-cutoff $QT_THRESHOLD,$QT_THRESHOLD --trim-n --max-n=0 --minimum-length $DISC_SHORT --maximum-length $DISC_LONG -o ${file:0:12}_filtered.fastq.gz $file
 	# Cutadapt can trim only ends of the reads. To filter sequences with low qualitys in the middle, we need to use FastX
 	gunzip -c ${file:0:12}_filtered.fastq.gz | fastq_quality_filter -Q $QUALITY -q $QF_THRESHOLD -p $QF_PERC -z -o ${file:0:12}_mirna.fastq.gz
+	# when working in $SCRATCH I do calculation first and then move files with results in order to take advantage of SSDs
 	mv ${file:0:12}_mirna.fastq.gz $OUTPUT_DIR
 done
 
