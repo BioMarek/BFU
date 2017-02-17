@@ -29,6 +29,6 @@ do
    # awk prints lengths of sequencs; uniq counts the sequences and number of couts
    awk '{print length}' $file | sort | uniq -c > $OUTPUT_DIR/${file:0:12}_counts.txt
    # chmod sets access right so that only owner can work with file
-   chmod 700 $OUTPUT_DIR/${file:0:12}.txt
+   chmod 700 $OUTPUT_DIR/${file:0:12}_counts.txt
    rm ${file:0:12}_discarded_fasta.fasta
 done
