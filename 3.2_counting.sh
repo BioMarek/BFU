@@ -6,8 +6,8 @@
 
 #######################################################################################################################
 ##SPECIFY DATA VARIABLES###
-PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
-DATASET_DIR=$PROJECT_DIR/filtered # path to input raw sequences
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
+DATASET_DIR=$PROJECT_DIR/filtered # path to input filtered sequences
 OUTPUT_DIR=$PROJECT_DIR/counts # path to output sequences
 
 #######################################################################################################################
