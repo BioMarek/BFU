@@ -32,7 +32,7 @@ done
 
 cd $SCRATCH
 
-for file in *
+for file in *.fastq.gz
 do
 	# Cutadapt quality trimming, N bases removal and length filtering
 	# for quality filtering we need Phred coding +33, otherwise --quality-base=$QUALITY
