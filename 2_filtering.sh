@@ -25,7 +25,7 @@ module add python27-modules-gcc
 module add python27-modules-intel
 module add fastx-0.0.13
 
-for file in *trimmed.fastq
+for file in *trimmed.fastq.gz
 do
    cp $file $SCRATCH
 done
