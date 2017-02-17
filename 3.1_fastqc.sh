@@ -25,7 +25,12 @@ module add fastQC-0.10.1
 
 for file in *mirna.fastq.gz
 do
-   gunzip -c $file | fastqc # test this 
+   gzip -d $file 
+done
+
+for file in *mirna.fastq
+do 
+   fastqc stdin
 done
 
 cp *.zip $OUTPUT_DIR
