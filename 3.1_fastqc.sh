@@ -29,8 +29,8 @@ do
 done
 
 for file in *mirna.fastq
-do 
-   fastqc stdin
+do
+   fastqc $file
 done
 
 cp *.zip $OUTPUT_DIR
