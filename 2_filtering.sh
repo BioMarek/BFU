@@ -1,10 +1,11 @@
 #! /bin/bash
 #
 #######################################################################################################################
+
 ###INFORMATION ABOUT THE SCRIPT###
 # The script removes sequences that are too short or long and performs quality filtering using FASTX
 
-##############################################################################################################################
+#######################################################################################################################
 ##SPECIFY DATA VARIABLES###
 QT_THRESHOLD=5
 QF_THRESHOLD=10 # Threshold for quality filtering
