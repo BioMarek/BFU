@@ -24,12 +24,13 @@ for seq_record in SeqIO.parse('Nicotiana_miRNA_D.fa', 'fasta'):
             # I use final result variable because I want to print it on screen and into file, also it has to be string 
             # to write it in file
             final_result = seq_record.id + ',' + sequence[0] + '\n'
+            # print(final_result) INFO
             f_result.write(final_result)
             break
     # for-else design, very useful, if there is no sequence found and end of file is reached we can print 0
     else:
         final_result = (seq_record.id + ',0\n')
-        print(final_result)
+        # print(final_result) INFO
         f_result.write(final_result)
 
 f_result.close()
