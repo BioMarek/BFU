@@ -1,3 +1,10 @@
+#######################################################################################################################
+###INFORMATION ABOUT THE SCRIPT###
+# The script takes preprocessed sequences and creates proper FASTA ile from them. So that this file can be used as
+# reference for 4_count_matrix_miRNAs.py script.
+
+#######################################################################################################################
+###SCRIPT BODY###
 import datetime
 
 
