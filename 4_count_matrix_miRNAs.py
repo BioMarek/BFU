@@ -16,7 +16,7 @@ f_result = open(processed_file + '_r.txt', 'w')
 f_result.write(processed_file + '\n')  # inserts name of processed sample
 f_input = open(processed_file + '.txt', 'r')
 
-for seq_record in SeqIO.parse('Nicotiana_miRNA_D.fa', 'fasta'):
+for seq_record in SeqIO.parse('Nicotiana_miRNA_D_no_duplicates.fa', 'fasta'):
     for line in f_input:
         # splits the input file using space as separator, first column is number of sequences, second column is
         # sequence itself, I have the input file prepared in correct format
