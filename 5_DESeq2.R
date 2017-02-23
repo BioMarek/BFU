@@ -1,3 +1,4 @@
+
 ####################################################################################################
 ####################################################################################################
 # Script to calculate differential gene expression using DESeq2 and edgeR package
@@ -13,7 +14,10 @@
 install.packages("pheatmap")
 install.packages("rgl")
 install.packages("gplots")
-install.packages("RColorBrewer") 
+install.packages("RColorBrewer")
+install.packages("calibrate")
+install.packages("ggplot2")
+install.packages("reshape")
 
 # install bioconductor, run with ctrl + enter, when asked "update all/some/none" pres n
 source("http://bioconductor.org/biocLite.R")
@@ -25,8 +29,8 @@ biocLite("DESeq2")
 
 ###################################################################################################
 # General variables
-INPUT_COUNTS<-"e:/Marek/Bi5444_R_analysis/plain_counts.counts" 
-OUTPUT_DIR<-"e:/Marek/Bi5444_R_analysis/Mirna_results"
+INPUT_COUNTS<-"c:/Users/user/Disk Google/Results/smRNA analysis/DESeq2/plain_counts.counts" 
+OUTPUT_DIR<-"c:/Users/user/Disk Google/Results/smRNA analysis/DESeq2/Mirna_results"
 ####################################################################################################
 # Custom variables
 P_THRESHOLD<-0.05
@@ -103,7 +107,7 @@ normcounts<-counts(cds, normalized=TRUE) # Save normalized counts
 log2counts<-log2(normcounts+1) # Save log2 of normalized counts
 
 vsd<-varianceStabilizingTransformation(cds) # Save counts tranformed with variance Stabilizing Transformation
-vstcounts<-assay(vsd)
+vstcounts<-assay(vsd) #stores data for PCA, data have to be rlog or varianceStabilizingTransformation
 
 # Asign colors according conditions 
 library("RColorBrewer") 
@@ -136,33 +140,52 @@ library("gplots")
 
 hmcol<-brewer.pal(11,"RdBu") #add colours for hmcol, colours for visualization of heatmaps, different then default
 
+# specification of the position of the color key (bellow) and the sizes of the graphs
+lmat = rbind(c(0,3,3),c(2,1,1),c(0,4,0))
+lwid = c(1,5,2)
+lhei = c(1,4,1.5)
+
 pdf(file="heatmap_raw.pdf")
-heatmap.2(cor(rawcounts), trace="none", col=hmcol, main="Sample to Sample Correlation (Raw Counts)", RowSideColors=cond_colours, margins=c(9,7))
+heatmap.2(cor(rawcounts), trace="none", col=hmcol, 
+          #lmat = lmat, lwid = lwid, lhei = lhei,
+          main="Sample to Sample Correlation (Raw Counts)", RowSideColors=cond_colours, margins=c(9,7))
 dev.off()
-pdf(file="heatmap_log2.pdf")
+# pdf(file="heatmap_log2.pdf")
+png(file="heatmap_log2.png")
 heatmap.2(cor(log2counts), trace="none", col=hmcol, main="Sample to Sample Correlation (Log2)", RowSideColors=cond_colours, margins=c(9,7))
 dev.off()
 pdf(file="heatmap_vst.pdf")
 heatmap.2(cor(vstcounts), trace="none", col=hmcol, main="Sample to Sample Correlation (VST)", RowSideColors=cond_colours, margins=c(9,7))
 dev.off()
 
-vstcounts<-vstcounts[apply(vstcounts, 1, max) != 0,]
+vstcounts<-vstcounts[apply(vstcounts, 1, max) != 0,] #gene counts variance stabiliying transformation
 pca<-princomp(vstcounts)
 
-pdf(file="sample_to_samples_PCA.pdf")
+# pdf(file="sample_to_samples_PCA.pdf")
+png(file="sample_to_samples_PCA.png")
 par(mfrow=c(1,1), xpd=NA) # http://stackoverflow.com/questions/12402319/centring-legend-below-two-plots-in-r
 plot(pca$loadings, col=cond_colours,  pch=19, cex=2, main="Sample to Sample PCA (VST)")
 text(pca$loadings, as.vector(colnames(mrcounts)), pos=1, cex=0.6)
 legend("bottomright", levels(unique(conds)), fill=cond_colours[levels(unique(conds))], cex=1)
 dev.off()
 
-pca2<-prcomp(t(vstcounts),scale=TRUE,center=TRUE)
+# Dispaly relative contribution of PCA components
+load<-with(pca, unclass(loadings))
+aload<-abs(load) # save absolute values (=without-)
 
-pdf(file="contributions_PCA.pdf")
-plot(pca2, type = "l", main="Principal Component Contributions")
+
+pca2<-prcomp(t(vstcounts),scale=TRUE,center=TRUE)
+#pca2$rotation # shows relevant loadings 
+#aload <- abs(pca2$rotation)
+#sweep(aload, 2, colSums(aload), "/")
+
+# pdf(file="contributions_PCA.pdf")
+png(file="contributions_PCA.png")
+plot(pca2, type = "l", main="Principal Component Contributions") #check for batch effect
 dev.off()
 
-pdf(file="samples_to_sample2_PCA.pdf")
+# pdf(file="samples_to_sample2_PCA.pdf")
+png(file="samples_to_sample2_PCA.png")
 par(mfrow=c(1,3), oma=c(2,0,0,0), xpd=NA) # http://stackoverflow.com/questions/12402319/centring-legend-below-two-plots-in-r
 plot(pca2$x, col=cond_colours,  pch=19, cex=2, main="Sample to Sample PCA (VST)")
 #text(pca2$x, as.vector(colnames(mrcounts)), pos=3, cex=1)
@@ -178,21 +201,12 @@ dev.off()
 library("rgl")
 # open 3d window
 open3d()
-
-# resize window
-par3d(windowRect = c(100, 100, 612, 612))
-
-# plot points
-plot3d(pca$loadings, col=cond_colours, pch=100, size=2, type="s")
-
-# add title
-title3d(main = "Sample to Sample PCA (VST)", line=4, cex=1.5)
-
-# add legend
-legend3d("topright", legend = paste(levels(conds)), pch = 16, col = cond_colours[levels(conds)], cex=1, inset=c(0.02))
-
-# write to pdf
-rgl.postscript("samples_to_sample_3D_PCA.pdf", "pdf")
+par3d(windowRect = c(100, 100, 612, 612)) # resize window
+plot3d(pca$loadings, col=cond_colours, pch=100, size=2, type="s") # plot points
+title3d(main = "Sample to Sample PCA (VST)", line=4, cex=1.5) # add title
+legend3d("topleft", legend = paste(levels(conds)), pch = 16, col = cond_colours[levels(conds)], cex=1, inset=c(0.02)) # add legend
+rgl.postscript("samples_to_sample_3D_PCA.pdf", "pdf") # write to pdf
+snapshot3d(file="samples_to_sample_3D_PCA.png", top = TRUE ) # write to png
 
 # Quick check of DE genes
 tmpMatrix<-matrix(ncol=1, nrow=5)
@@ -219,12 +233,27 @@ if(length(sig)<TOP){ # Avoid error by ploting more TOP genes than significantly 
   TOP<-length(sig)
 }
 
-pdf(file=paste("volcanoplot_", levels(conds)[1], "_v_", levels(conds)[2],".pdf", sep=""))
+#pdf(file=paste("volcanoplot_", levels(conds)[1], "_v_", levels(conds)[2],".pdf", sep=""))
+png(file=paste("volcanoplot_", levels(conds)[1], "_v_", levels(conds)[2],".png", sep=""))
 par(mfrow=c(1,1), xpd=NA) # http://stackoverflow.com/questions/12402319/centring-legend-below-two-plots-in-r
-plot(res$log2FoldChange, -log(res$padj, 10), main=paste("Volcanoplot ",levels(conds)[2], " v ", levels(conds)[1], " top ", TOP, " genes", sep=""), cex=0.4, pch=19)
+### Version 1 to make volcano plot
+# Make a basic volcano plot
+with(res, plot(log2FoldChange, -log10(padj), pch=20, cex=0.4, main=paste("Volcanoplot ",levels(conds)[2], " vs ", levels(conds)[1], sep="")))
+# Add colored points: red if padj<0.01, orange of log2FC>2.5, green if both)
+with(subset(res, res$padj<0.01 ), points(log2FoldChange, -log10(padj), pch=20, cex=0.4, col="red"))
+with(subset(res, abs(res$log2FoldChange)>2.5), points(log2FoldChange, -log10(padj), pch=20, cex=0.4, col="orange"))
+with(subset(res, res$padj<0.01 & abs(res$log2FoldChange)>2.5), points(log2FoldChange, -log10(padj), pch=20, cex=0.4, col="darkgreen"))
+
+#Add labels points with the textxy function from the calibrate plot
+library(calibrate)
+with(subset(res[1:9,]), textxy(log2FoldChange, -log10(padj), labs=rownames(res[1:9,]), cex=0.8, pos=1))
+
+### Version 2 to make volcanoplot
+#plot(res$log2FoldChange, -log(res$padj, 10), main=paste("Volcanoplot ",levels(conds)[2], " v ", levels(conds)[1], " top ", TOP, " genes", sep=""), cex=0.4, pch=19)
 #text(res[1:length(sig),]$log2FoldChange, -log(res[1:length(sig),]$padj,10), 
     #labels=parsedEnsembl[parsedEnsembl$gene_id %in% rownames(res[1:length(sig),]), "gene_name"], cex=0.3, pos=3)
-text(res[1:TOP,]$log2FoldChange, -log(res[1:TOP,]$padj,10), labels=(rownames(res[1:TOP,]), "gene_name"), cex=0.3, pos=3)
+#text(res[1:TOP,]$log2FoldChange , -log(res[1:TOP,]$padj,10), labels=res2$Row.names[1:TOP,], "gene_name", adj=0,3, cex=0.3, pos=3)
+#text(labels=res2$Row.names[1:TOP,], adj=0,3, cex=0.3, pos=3)
 legend("bottomleft", levels(conds)[1], cex=0.5)
 legend("bottomright", levels(conds)[2], cex=0.5)
 abline(h=-log(P_THRESHOLD, 10), col="red", lty=2)
@@ -251,7 +280,7 @@ nt<-normTransform(dds) # defaults to log2(x+1)
 log2.norm.counts<-assay(nt)[select,]
 log2.norm.counts<-log2.norm.counts[order(rowMeans(log2.norm.counts)),]
 
-df<-as.data.frame(colData(dds) [,c("condition")]) #it only have one column named condition, so we cannot select two columns, on named condition and the other named patient
+df<-as.data.frame(colData(dds) [,c("condition")]) #it only have one column named condition, so we cannot select two columns, one named condition and the other named patient
 
 TOP_BCKP<-TOP
 
@@ -260,11 +289,11 @@ if(TOP>length(select)){
 }
 
 #specification of the position of the color key (bellow) and the sizes of the graphs
-lmat = rbind(c(0,3),c(2,1),c(0,4))
-lwid = c(1,8)
-lhei = c(1,4,1.5)
-pdf(file="deseq2_heatmaps_selected_orderBaseMeanCluster.pdf")
-
+lmat = rbind(c(0,3,3),c(2,1,1),c(4,0,0))
+lwid = c(1.5,4,2)
+lhei = c(1.5,4,1.5)
+#pdf(file="deseq2_heatmaps_selected_orderBaseMeanCluster.pdf")
+png(file="deseq2_heatmaps_selected_orderBaseMeanCluster.png")
 #pheatmap(log2.norm.counts, cluster_rows=TRUE, show_rownames=TRUE, cluster_cols=TRUE, annotation_col=df, 
  #        main = paste("Top ", TOP, " significantly DE genes (log2norm)", sep=""))
 heatmap.2(log2.norm.counts, Rowv=TRUE, Colv=TRUE, margins=c(5,10),
@@ -272,7 +301,8 @@ heatmap.2(log2.norm.counts, Rowv=TRUE, Colv=TRUE, margins=c(5,10),
           main = paste("Top ", TOP, " significantly DE genes (log2norm)", sep=""), na.color="Green")
 dev.off()
 
-pdf(file="deseq2_heatmaps_selected_orderBaseMean.pdf")
+#pdf(file="deseq2_heatmaps_selected_orderBaseMean.pdf")
+png(file="deseq2_heatmaps_selected_orderBaseMean.png")
 #pheatmap(log2.norm.counts, cluster_rows=FALSE, show_rownames=TRUE,
 #         cluster_cols=FALSE, annotation_col=df, main = paste("Top ", TOP, " significantly DE genes (log2norm)", sep=""))
 
@@ -287,3 +317,18 @@ graphics.off()
 
 system("for i in deseq2_heatmaps_selected_*; do pdftk $i cat 2-end output tmp.pdf; mv tmp.pdf $i; done") # Cut first empty page from heatmap plot
 
+### extract genes with abs(log2FoldChange)>2.5 and p_value<P_Threshold
+res_select<-res2[res2$padj<0.01 & abs(res2$log2FoldChange)>2.5,]
+res_select<-res_select[,c("control_1_normCounts", "control_2_normCounts", "control_3_normCounts", "control_4_normCounts", "control_5_normCounts")]
+
+## chci plot y tohohle res_select[,c("control_1_normCounts", "control_2_normCounts", "control_3_normCounts", "control_4_normCounts", "control_5_normCounts")
+library("ggplot2")
+library("reshape")
+res_select$group <- row.names(res_select)
+res_select_m <- melt(res_select, id.vars = "group")
+ggplot(res_select_m, aes(group, value)) # + geom_boxplot(color=cond_colours) #
++ coord_flip()
+
+ph = 2.75
+pw = 4
+ggsave("gene_plot.png", height=ph, width=pw)
