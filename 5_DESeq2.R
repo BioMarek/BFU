@@ -1,16 +1,20 @@
-
-####################################################################################################
-####################################################################################################
-# Script to calculate differential gene expression using DESeq2 and edgeR package
+############################################################################################################################
+### INFORMATION ABOUT THE SCRIPT ###
+# R-Script to calculate differential gene expression using DESeq2 package
 # Designed for miRNA differential gene expression analysis based on miRBase results
 #
-# INPUT_COUNTS - table with raw genes counts -> first column = miRBase gene id, first row = patient id
-####################################################################################################
-####################################################################################################
+# The script performs following:
+# 1) Processing of the input counts
+# 2) DESeq2 analysis
+# 2) Visualization of the results
 #
-#rm(list=ls(all=TRUE)) ##removes all variables that were stored in rstudio from older projects
+# INPUT_COUNTS - table with raw genes counts -> first column = miRBase gene id, first row = patient id
+#############################################################################################################################
 
-## Install packages
+# removes all variables that were stored in rstudio from older projects
+# rm(list=ls(all=TRUE))
+
+### Install packages ###
 install.packages("pheatmap")
 install.packages("rgl")
 install.packages("gplots")
@@ -19,7 +23,7 @@ install.packages("calibrate")
 install.packages("ggplot2")
 install.packages("reshape")
 
-# install bioconductor, run with ctrl + enter, when asked "update all/some/none" pres n
+# install bioconductor
 source("http://bioconductor.org/biocLite.R")
 biocLite()
 
@@ -28,27 +32,30 @@ source("http://bioconductor.org/biocLite.R")
 biocLite("DESeq2")
 
 ###################################################################################################
-# General variables
+###SPECIFY DATA VARIABLES###
+# General variables. Change pathway to INPUT_COUNTS to where you store your alignment counts.Custom your pahtway to directory for result storage.
 INPUT_COUNTS<-"c:/Users/user/Disk Google/Results/smRNA analysis/DESeq2/plain_counts.counts" 
 OUTPUT_DIR<-"c:/Users/user/Disk Google/Results/smRNA analysis/DESeq2/Mirna_results"
-####################################################################################################
+
 # Custom variables
-P_THRESHOLD<-0.05
-LFC_THRESHOLD<-log(1.5, 2) #log2 fold change, important results will be in range given in brackets
+P_THRESHOLD<-0.05 # p-value threshold
+LFC_THRESHOLD<-log(1.5, 2) # Log2 fold change, important results will be in range given in brackets
 TOP<-20 # How many top DE miRNAs should be plotted
 
 ####################################################################################################
+###SCRIPT BODY###
+# Set working directory, create output directory.
 dir.create(OUTPUT_DIR, recursive = T)
 setwd(OUTPUT_DIR)
 
-# Processing
+# 1) Processing
 
 mrcounts<-read.table(INPUT_COUNTS, header=TRUE, row.names=1)
 
 # if we need to reorder the column order we use following line
-# mrcounts<-mrcounts[,c("header_column_4", "header_column_2", "header_column_1", "header_column_3")] # Select and reorder columns, in R we read tables table[rows,columns], so if I want to see first column: table [,1]
+# mrcounts<-mrcounts[,c("header_column_4", "header_column_2", "header_column_1", "header_column_3")] # Select and reorder columns
 
-conds<-factor(c(rep("H11", 2), rep("P1", 2), rep("P3", 2), rep("P8", 2), rep("REG", 2)), levels=c("H11", "P1", "P3", "P8", "REG")) # Set conditions and make sure they are in correct order, factor-in R define levels
+conds<-factor(c(rep("H11", 2), rep("P1", 2), rep("P3", 2), rep("P8", 2), rep("REG", 2)), levels=c("H11", "P1", "P3", "P8", "REG")) # Set conditions and make sure they are in correct order
 
 mrcounts<-mrcounts[rowSums(mrcounts)!=0,] # Remove not expressed genes in any sample
 
