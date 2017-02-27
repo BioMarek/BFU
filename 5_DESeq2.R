@@ -37,6 +37,10 @@ biocLite("DESeq2")
 INPUT_COUNTS<-"c:/Users/user/Disk Google/Results/smRNA analysis/DESeq2/plain_counts.counts" 
 OUTPUT_DIR<-"c:/Users/user/Disk Google/Results/smRNA analysis/DESeq2/Mirna_results"
 
+#Directories at home computer
+#INPUT_COUNTS<-"c:/Users/marek/Google Drive/Results/smRNA analysis/DESeq2/plain_counts.counts" 
+#OUTPUT_DIR<-"c:/Users/marek/Google Drive/Results/smRNA analysis/DESeq2/Mirna_results"
+
 # Custom variables
 P_THRESHOLD<-0.05 # p-value threshold
 LFC_THRESHOLD<-log(1.5, 2) # Log2 fold change, important results will be in range given in brackets
