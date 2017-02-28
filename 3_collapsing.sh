@@ -18,8 +18,9 @@ for file in *mirna.fastq.gz
 do
   # gunzip -c unpacks wihout modifying the input file and sends result to STDOUT; sed removes evrything but sequences; 
   # uniq counts how many sequences of each type there is (first sort is there because uniq requires adjacent matching lines); 
-  # second sort sorts numericaly in reverse order and grep removes sequences with sigle hit
-  gunzip -c $file | sed -n 'n;p;n;n;' | sort | uniq -c | sort -n -r | grep -v '^1 ' > $OUTPUT_DIR/${file:0:12}.txt
+  # second sort sorts numericaly in reverse order and grep removes sequences with sigle hit (multiple spaces than number 1 
+  # and then space)
+  gunzip -c $file | sed -n 'n;p;n;n;' | sort | uniq -c | sort -n -r | grep -v '^[ ]*1 ' > $OUTPUT_DIR/${file:0:12}.txt
   # chmod sets access right so that only owner can work with file
   chmod 700 $OUTPUT_DIR/${file:0:12}.txt
 done
