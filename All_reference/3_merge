@@ -15,7 +15,7 @@ cd $INPUT_DIR
 #######################################################################################################################
 ###SCRIPT BODY###
 
-for file in .txt
+for file in *.txt
 do
   dos2unix $file
   chmod 700 $file
