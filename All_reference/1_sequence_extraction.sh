@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/ # path to project dir
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/collapsed # path to input filtered sequences
 OUTPUT_DIR=$PROJECT_DIR/reference # path to output sequences
 
