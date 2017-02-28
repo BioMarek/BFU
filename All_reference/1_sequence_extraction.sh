@@ -13,5 +13,5 @@ do
   awk '{print $2}' $file >> reference_all_temp.txt
 done
 
-uniq  reference_all_temp.txt > $OUTPUT_DIR/reference_all.txt
+sort reference_all_temp.txt | uniq > $OUTPUT_DIR/reference_all.txt
 rm reference_all_temp.txt
