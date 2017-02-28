@@ -21,4 +21,4 @@ do
   chmod 700 $file
 done
 
-paste reference_all.txt H11_A_ATCACG_r.txt H11_B_CGATGT_r.txt P1_A_CAGATC__r.txt P1_B_ACTTGA__r.txt P3_A_GATCAG__r.txt P3_B_TAGCTT__r.txt P8_A_TTAGGC__r.txt P8_B_TGACCA__r.txt REG_A_ACAGTG_r.txt REG_B_GCCAAT_r.txt
+paste reference_all.txt H11_A_ATCACG_r.txt H11_B_CGATGT_r.txt P1_A_CAGATC__r.txt P1_B_ACTTGA__r.txt P3_A_GATCAG__r.txt P3_B_TAGCTT__r.txt P8_A_TTAGGC__r.txt P8_B_TGACCA__r.txt REG_A_ACAGTG_r.txt REG_B_GCCAAT_r.txt > counts_all.counts
