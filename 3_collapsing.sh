@@ -2,8 +2,9 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The script collapses identical sequeces to sinlge one while keeping information about number of reads, somethying
+# The script collapses identical sequeces to sinlge one while keeping information about number of reads, something
 # like Tally http://wwwdev.ebi.ac.uk/enright-dev/kraken/reaper/src/reaper-latest/doc/tally.html
+# sequences with only one hit are discarded
 
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/ # path to project dir
 INPUT_DIR=$PROJECT_DIR/filtered # path to input filtered sequences
