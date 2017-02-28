@@ -6,7 +6,7 @@
 # like Tally http://wwwdev.ebi.ac.uk/enright-dev/kraken/reaper/src/reaper-latest/doc/tally.html
 # sequences with only one hit are discarded
 
-PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA/ # path to project dir
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/filtered # path to input filtered sequences
 OUTPUT_DIR=$PROJECT_DIR/collapsed # path to output sequences
 
