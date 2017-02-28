@@ -7,11 +7,15 @@ OUTPUT_DIR=$PROJECT_DIR/reference # path to output sequences
 cd $INPUT_DIR
 mkdir $OUTPUT_DIR
 
+# creating empty file otherwise awk throws error
+touch $OUTPUT_DIR/reference_all_temp.txt
+
 # input are files with collapsed sequences first column is number of sequences in second column
 for file in *.txt
 do
-  awk '{print $2}' $file >> reference_all_temp.txt
+  awk '{print $2}' $file >> $OUTPUT_DIR/reference_all_temp.txt
 done
 
+cd $OUTPUT_DIR
 sort reference_all_temp.txt | uniq > $OUTPUT_DIR/reference_all.txt
 rm reference_all_temp.txt
