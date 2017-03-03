@@ -13,7 +13,9 @@ OUTPUT_DIR=$PROJECT_DIR/reference # path to output sequences
 
 ##############################################################################################################################
 ###SCRIPT BODY###
+cd $INPUT_DIR
+
 for file in *.fa.gz
 do
-  gunzip - c $file | sed -n '/$SPECIES_ID/{p;n;p}' >> $OUTPUT_DIR/Nicotiana_Rfam_seq.fa
+  gunzip -c $file | sed -n '/$SPECIES_ID/{p;n;p}' >> $OUTPUT_DIR/Nicotiana_Rfam_seq.fa
 done
