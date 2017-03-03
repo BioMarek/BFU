@@ -19,3 +19,5 @@ for file in *.fa.gz
 do
   gunzip -c $file | sed -n '/$SPECIES_ID/{p;n;p}' >> $OUTPUT_DIR/Nicotiana_Rfam_seq.fa
 done
+
+chmod 700 $OUTPUT_DIR/Nicotiana_Rfam_seq.fa
