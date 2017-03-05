@@ -2,18 +2,20 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The script collapses identical sequeces to sinlge one while keeping information about number of reads, something
-# like Tally http://wwwdev.ebi.ac.uk/enright-dev/kraken/reaper/src/reaper-latest/doc/tally.html
-# sequences with only one hit are discarded
+## SCRIPT INPUT  modified output of 4_count_matrix_miRNAs.py (only counts without sequence) and reference file 
+##               from 1_sequence_extraction.sh
+## SCRIPT OUTPUT *.counts which can be used as an input for 5_DESeq2.R 
+# The sript creates count matrix for DESeq2 analysis
 
+#######################################################################################################################
+###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/count_matrix_all # path to input filtered sequences
 OUTPUT_DIR=$PROJECT_DIR/count_matrix_all # path to output sequences
 
-cd $INPUT_DIR
-
 #######################################################################################################################
 ###SCRIPT BODY###
+cd $INPUT_DIR
 
 for file in *.txt
 do
