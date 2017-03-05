@@ -2,6 +2,8 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
+## SCRIPT INPUT  *.fastq.gz with raw sequences from sequencing
+## SCRIPT OUTPUT *.fastq.gz sequences without adapter
 # The script trims adapter sequences using cutadapt from raw sequencing data
 
 #######################################################################################################################
