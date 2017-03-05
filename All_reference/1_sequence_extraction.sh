@@ -2,8 +2,10 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The script creates reference file from all sequences after sequencing which can be later used as an input for
-# 4_count_matrix_miRNAs.py script
+## SCRIPT INPUT - bare nucleotide sequences
+## SCRIPT OUTPUT - bare nucleotide sequences combined from multiple files without duplicates
+# The script creates reference file from multiple files by combineing multiple files and removing duplicates. It can be 
+# later used as an input for 2_fasta_from_sequence.py
 
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
