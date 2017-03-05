@@ -18,4 +18,5 @@ done
 
 cd $OUTPUT_DIR
 sort reference_all_temp.txt | uniq > $OUTPUT_DIR/reference_all.txt
+chmod 700 $OUTPUT_DIR/reference_all.txt
 rm reference_all_temp.txt
