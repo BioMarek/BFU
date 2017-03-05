@@ -2,6 +2,8 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
+## SCRIPT INPUT  *.fastq.gz filtered sequences with proper length and high quality
+## SCRIPT OUTPUT *.txt file counts with length distribution
 # The script counts length distribution of sequences so we can make histogram
 
 #######################################################################################################################
