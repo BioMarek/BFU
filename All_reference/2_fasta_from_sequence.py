@@ -1,6 +1,8 @@
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The script takes preprocessed bare sequences and creates proper FASTA file from them. So that this file can be used
+## SCRIPT INPUT - bare nucleotide sequences
+## SCRIPT OUTPUT - file in fasta format which can be used as an input for any script that requires fasta as an input
+# The script takes preprocessed bare sequences and creates proper FASTA file from them. So that the file can be used
 # as reference for 4_count_matrix_miRNAs.py script.
 
 #######################################################################################################################
