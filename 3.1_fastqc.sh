@@ -2,6 +2,8 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
+## SCRIPT INPUT  *.fastq.gz filtered sequences with proper length and high quality
+## SCRIPT OUTPUT *.zip file containing results from FastQC analysis
 # The script performs quality analysis using FastQC on sequencing data
 
 #######################################################################################################################
