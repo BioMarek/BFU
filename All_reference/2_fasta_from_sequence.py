@@ -1,12 +1,16 @@
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The script takes preprocessed sequences and creates proper FASTA ile from them. So that this file can be used as
-# reference for 4_count_matrix_miRNAs.py script.
+# The script takes preprocessed bare sequences and creates proper FASTA file from them. So that this file can be used
+# as reference for 4_count_matrix_miRNAs.py script.
+
+#######################################################################################################################
+###SPECIFY DATA VARIABLES###
+# description in each fasta file
+description = ' smRNA Nicotiana tabacum\n'
 
 #######################################################################################################################
 ###SCRIPT BODY###
 import datetime
-
 
 # reading lines from file reads them with '\n' chars, this function removes them
 def remove_enter(line):
@@ -23,7 +27,7 @@ f_result = open('reference_all.fa', 'w')
 
 # we have only sequence without any name or identifier so this creates fasta from just sequence
 for line in f_input:
-    final_result = ('>' + remove_enter(line) + ' smRNA Nicotiana tabacum\n' + line)
+    final_result = ('>' + remove_enter(line) + description + line)
     f_result.write(final_result)
 
 f_result.close()
