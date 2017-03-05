@@ -1,9 +1,18 @@
 #! /bin/bash
 #
+#######################################################################################################################
+###INFORMATION ABOUT THE SCRIPT###
+# The script creates reference file from all sequences after sequencing which can be later used as an input for
+# 4_count_matrix_miRNAs.py script
+
+#######################################################################################################################
+###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/collapsed # path to input filtered sequences
 OUTPUT_DIR=$PROJECT_DIR/reference # path to output sequences
 
+#######################################################################################################################
+###SCRIPT BODY###
 cd $INPUT_DIR
 mkdir $OUTPUT_DIR
 
