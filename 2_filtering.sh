@@ -2,6 +2,8 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
+## SCRIPT INPUT  *.fastq.gz sequences without adapter
+## SCRIPT OUTPUT *.fastq.gz filtered sequences with proper length and high quality
 # The script removes sequences that are too short or long and performs quality filtering using FASTX
 
 #######################################################################################################################
