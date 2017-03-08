@@ -1,0 +1,11 @@
+#! /bin/bash
+#
+##############################################################################################################################
+###INFORMATION ABOUT THE SCRIPT###
+# The scritp creates *.fa file from each sequence from collapsed files so that metacentrum blastn can use them
+
+##############################################################################################################################
+##SPECIFY DATA VARIABLES###
+PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
+INPUT_DIR=$PROJECT_DIR/collapsed # path to input filtered sequences
+OUTPUT_DIR=$PROJECT_DIR/blast # path to output sequences
