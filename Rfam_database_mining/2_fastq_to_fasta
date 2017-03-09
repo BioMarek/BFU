@@ -4,7 +4,7 @@
 ###INFORMATION ABOUT THE SCRIPT###
 ## SCRIPT INPUT  *.fastq file
 ## SCRIPT OUTPUT *.fasta file
-# The script converts *.fastq file to *.fasta file
+# The script converts *.fastq file to *.fasta file so that metacntrum blast can use it
 
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
