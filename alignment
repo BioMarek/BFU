@@ -1,8 +1,0 @@
-# metacentrum SAMtools
-
-module add samtools-1.2
-samtools
-
-#metacentrum STAR
-module add star-2.5.0c
-STAR --volba1 hodnota1 --volba2 hodnota2
