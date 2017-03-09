@@ -9,10 +9,12 @@
 ###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/reference # path to input filtered sequences
-OUTPUT_DIR=$PROJECT_DIR/blast # path to output sequences
+OUTPUT_DIR=$PROJECT_DIR/test_blast # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
+mkdir $OUTPUT_DIR
+cd $INPUT_DIR
 
 # rework for 2 lines, if line starts with > create file and copy line into it else copy line into previous file
 while read line
