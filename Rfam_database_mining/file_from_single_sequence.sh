@@ -14,7 +14,15 @@ OUTPUT_DIR=$PROJECT_DIR/blast # path to output sequences
 #######################################################################################################################
 ###SCRIPT BODY###
 
-# rework for 2 lines
-while read line; do
-    touch "${line}.txt"
+# rework for 2 lines, if line starts with > create file and copy line into it else copy line into previous file
+while read line
+do
+  if [${line:0:1} = '>'] # if first line is description create name with said name TODO spaces?
+  then
+    touch ${line}.fa
+    temp=${line}.fa # filename must be stored for the next cycle in which we save the sequence into said file
+    echo $line >> ${line}.fa
+  else
+    echo $line >> $temp
+  fi
 done <  Nicotiana_Rfam_seq.fa
