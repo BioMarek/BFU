@@ -14,5 +14,6 @@ cd $INPUT_DIR
 
 for file in *.txt
 do
-  awk '{print">" $2 "|" $1 "\n" $2}' $file > $OUTPUT_DIR/${file:0:12}_collapsed.fa
+  # in the description there is sequence as a "name" and number of these sequences delimited by '|' character
+  awk '{print ">" $2 "|" $1 "\n" $2}' $file > $OUTPUT_DIR/${file:0:12}_collapsed.fa
 done
