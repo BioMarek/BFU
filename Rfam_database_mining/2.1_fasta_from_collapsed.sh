@@ -2,7 +2,7 @@
 #
 ##############################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-# The scritp creates *.fa file from each sequence from collapsed files so that metacentrum blastn can use them
+# The script creates *.fa file from collapsed files so that metacentrum blastn can use them
 
 ##############################################################################################################################
 ##SPECIFY DATA VARIABLES###
