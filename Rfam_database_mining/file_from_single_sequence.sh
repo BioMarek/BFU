@@ -19,12 +19,13 @@ cd $INPUT_DIR
 # rework for 2 lines, if line starts with > create file and copy line into it else copy line into previous file
 while read line
 do
-  if [${line:0:1} = '>'] # if first line is description create name with said name TODO spaces?
+  if [ ${line:0:1} == '>' ] # if first line is description create name with said name TODO spaces?
   then
     touch ${line}.fa
     temp=${line}.fa # filename must be stored for the next cycle in which we save the sequence into said file
     echo $line >> ${line}.fa
   else
-    echo $line >> $temp
+    # quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
+    echo $line >> "$temp"
   fi
 done <  Nicotiana_Rfam_seq.fa
