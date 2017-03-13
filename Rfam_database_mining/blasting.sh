@@ -19,7 +19,6 @@ mkdir $OUTPUT_DIR
 cd $INPUT_DIR
 
 cp * $SCRATCH
-cp $REFERENCE_DIR/$REFERENCE_FILE $SCRATCH
 
 ###CREATION OF REFERENCE FILES###
 while read line
@@ -37,6 +36,15 @@ do
 done < Nicotiana_Rfam_seq.fa
 
 
-
 ###BLASTING###
-blastn -query que2.fa -subject que.fa
+module add blast+-2.2.27
+
+blastn -query que2.fa -subject que.fa > result
+# -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
+if grep -q "No hits found" result
+then
+  rm result
+else #get number and save it, continue
+  
+fi
+
