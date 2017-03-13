@@ -10,6 +10,8 @@ PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/collapsed # path to input filtered sequences
 OUTPUT_DIR=$PROJECT_DIR/blast # path to output sequences
 
+#######################################################################################################################
+###SCRIPT BODY###
 cd $INPUT_DIR
 
 for file in *.txt
