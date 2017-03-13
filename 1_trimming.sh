@@ -7,7 +7,7 @@
 # The script trims adapter sequences using cutadapt from raw sequencing data
 
 #######################################################################################################################
-##SPECIFY DATA VARIABLES###
+##SPECIFY DATA VARIABLES##
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 DATASET_DIR=$PROJECT_DIR/raw_sequences # path to input raw sequences
 OUTPUT_DIR=$PROJECT_DIR/trimmed # path to output sequences
