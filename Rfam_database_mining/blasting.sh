@@ -58,9 +58,9 @@ done < H11_A_ATCACG_collapsed.fa
 
 
 ###BLASTING###
-for SUBJECT in *ref.fa 
+for SUBJECT in *ref.fa
 do
- touch "$SUBJECT"_hits.txt
+  touch "$SUBJECT"_hits.txt
 
   for QUERY in *que.fa
   do
