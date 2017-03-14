@@ -44,7 +44,8 @@ blastn -query que2.fa -subject que.fa > result
 if grep -q "No hits found" result
 then
   rm result
-else #get number and save it, continue
-  
+else
+   grep -o -P '(?<=Query= ).*(?= )' >> res # saves number of sequences that had been succesfully matched to res file
+   echo \n >> res # adds new line there is porbably better way
 fi
 
