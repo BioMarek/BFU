@@ -19,15 +19,17 @@ module add blast+-2.2.27
 
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
-
 cp * $SCRATCH
+cd $SCRATCH
+
+count=1
 
 ###CREATION OF SUBJECT FILES###
 while read line
-do
-  count=$[count + 1]
+do 
   if [ ${line:0:1} == '>' ] # if first line is description create new file 
   then
+    count=$[count + 1]
     touch Nicotiana_Rfam_seq_"$count"ref.fa
     temp=Nicotiana_Rfam_seq_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
     echo $line >> Nicotiana_Rfam_seq_"$count"ref.fa
@@ -38,11 +40,13 @@ do
 done < Nicotiana_Rfam_seq.fa
 
 ###CREATION OF QUERY FILES###
+count=1
+
 while read line
 do
-  count=$[count + 1]
   if [ ${line:0:1} == '>' ] # if first line is description create new file 
   then
+    count=$[count + 1]
     touch H11_A_ATCACG_"$count"_que.fa
     temp=H11_A_ATCACG_"$count"_que.fa # filename must be stored for the next cycle in which we save the sequence into said file
     echo $line >> H11_A_ATCACG_"$count"_que.fa
