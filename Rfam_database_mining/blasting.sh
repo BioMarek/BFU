@@ -22,9 +22,9 @@ cd $INPUT_DIR
 cp * $SCRATCH
 cd $SCRATCH
 
+###CREATION OF SUBJECT FILES###
 count=1
 
-###CREATION OF SUBJECT FILES###
 while read line
 do 
   if [ ${line:0:1} == '>' ] # if first line is description create new file 
@@ -58,6 +58,8 @@ done < H11_A_ATCACG_collapsed.fa
 
 
 ###BLASTING###
+touch Nicotiana_Rfam_seq_1ref_hits.txt
+
 for QUERY in *_que.fa
 do
   blastn -query $QUERY -subject Nicotiana_Rfam_seq_1ref.fa > result
@@ -66,7 +68,6 @@ do
   then
     rm result
   else
-    touch Nicotiana_Rfam_seq_1ref_hits.txt
     grep -o -P '(?<=Query= ).*(?= )' >> Nicotiana_Rfam_seq_1ref_hits.txt # saves number of sequences that had been succesfully matched to res file
     echo \n >> Nicotiana_Rfam_seq_1ref_hits.txt # adds new line there is porbably better way
   fi
