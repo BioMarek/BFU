@@ -29,10 +29,10 @@ while read line
 do 
   if [ ${line:0:1} == '>' ] # if first line is description create new file 
   then
-    count=$[count + 1]
     touch Nicotiana_Rfam_seq_"$count"ref.fa
     temp=Nicotiana_Rfam_seq_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
     echo $line >> Nicotiana_Rfam_seq_"$count"ref.fa
+    count=$[count + 1]
   else
     # double quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
     echo $line >> "$temp"
@@ -46,10 +46,10 @@ while read line
 do
   if [ ${line:0:1} == '>' ] # if first line is description create new file 
   then
-    count=$[count + 1]
     touch H11_A_ATCACG_"$count"_que.fa
     temp=H11_A_ATCACG_"$count"_que.fa # filename must be stored for the next cycle in which we save the sequence into said file
     echo $line >> H11_A_ATCACG_"$count"_que.fa
+    count=$[count + 1]
   else
     # double quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
     echo $line >> "$temp"
