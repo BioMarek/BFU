@@ -73,8 +73,9 @@ do
       grep -o -P '(?<=Query= ).*(?= )' result >> "$SUBJECT"_hits.txt # saves number of sequences that had been succesfully matched to res file
     fi
   done
+  
+  cp "$SUBJECT"_hits.txt $OUTPUT_DIR
 done
 
-cp *_hits.txt $OUTPUT_DIR
 rm *
 
