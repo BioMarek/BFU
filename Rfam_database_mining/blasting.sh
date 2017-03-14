@@ -58,17 +58,20 @@ done < H11_A_ATCACG_collapsed.fa
 
 
 ###BLASTING###
-touch Nicotiana_Rfam_seq_1ref_hits.txt
-
-for QUERY in *_que.fa
+for SUBJECT in *ref.fa 
 do
-  blastn -query $QUERY -subject Nicotiana_Rfam_seq_1ref.fa > result
-  # -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
-  if grep -q "No hits found" result
-  then
-    rm result
-  else
-    grep -o -P '(?<=Query= ).*(?= )' result >> Nicotiana_Rfam_seq_1ref_hits.txt # saves number of sequences that had been succesfully matched to res file
-  fi
+ touch "$SUBJECT"_hits.txt
+
+  for QUERY in *que.fa
+  do
+    blastn -query $QUERY -subject $SUBJECT > result
+    # -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
+    if grep -q "No hits found" result
+    then
+      rm result
+    else
+      grep -o -P '(?<=Query= ).*(?= )' result >> "$SUBJECT"_hits.txt # saves number of sequences that had been succesfully matched to res file
+    fi
+  done
 done
 
