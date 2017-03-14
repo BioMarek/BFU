@@ -27,7 +27,7 @@ count=1
 
 while read line
 do 
-  if [ ${line:0:1} == '>' ] # if first line is description create new file 
+  if [ ${line:0:1} == '>' ] # if first line is description create new file
   then
     touch Nicotiana_Rfam_seq_"$count"ref.fa
     temp=Nicotiana_Rfam_seq_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
@@ -44,7 +44,7 @@ count=1
 
 while read line
 do
-  if [ ${line:0:1} == '>' ] # if first line is description create new file 
+  if [ ${line:0:1} == '>' ] # if first line is description create new file
   then
     touch H11_A_ATCACG_"$count"_que.fa
     temp=H11_A_ATCACG_"$count"_que.fa # filename must be stored for the next cycle in which we save the sequence into said file
@@ -74,4 +74,7 @@ do
     fi
   done
 done
+
+cp *_hits.txt $OUTPUT_DIR
+rm *
 
