@@ -15,12 +15,14 @@ OUTPUT_DIR=$PROJECT_DIR/blasted # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
+module add blast+-2.2.27
+
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
 
 cp * $SCRATCH
 
-###CREATION OF REFERENCE FILES###
+###CREATION OF SUBJECT FILES###
 while read line
 do
   count=$[count + 1]
@@ -35,10 +37,23 @@ do
   fi
 done < Nicotiana_Rfam_seq.fa
 
+###CREATION OF QUERY FILES###
+while read line
+do
+  count=$[count + 1]
+  if [ ${line:0:1} == '>' ] # if first line is description create new file 
+  then
+    touch H11_A_ATCACG_"$count"_que.fa
+    temp=H11_A_ATCACG_"$count"_que.fa # filename must be stored for the next cycle in which we save the sequence into said file
+    echo $line >> H11_A_ATCACG_"$count"_que.fa
+  else
+    # double quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
+    echo $line >> "$temp"
+  fi
+done < H11_A_ATCACG_collapsed.fa
+
 
 ###BLASTING###
-module add blast+-2.2.27
-
 blastn -query que2.fa -subject que.fa > result
 # -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
 if grep -q "No hits found" result
