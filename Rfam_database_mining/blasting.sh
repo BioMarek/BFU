@@ -68,8 +68,7 @@ do
   then
     rm result
   else
-    grep -o -P '(?<=Query= ).*(?= )' >> Nicotiana_Rfam_seq_1ref_hits.txt # saves number of sequences that had been succesfully matched to res file
-    echo \n >> Nicotiana_Rfam_seq_1ref_hits.txt # adds new line there is porbably better way
+    grep -o -P '(?<=Query= ).*(?= )' result >> Nicotiana_Rfam_seq_1ref_hits.txt # saves number of sequences that had been succesfully matched to res file
   fi
 done
 
