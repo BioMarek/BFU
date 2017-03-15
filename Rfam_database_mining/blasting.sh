@@ -2,7 +2,7 @@
 #
 ##############################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-## run with qsub -l walltime=2d -l mem=100mb -l scratch=40gb:ssd -l nodes=1:ppn=1
+## run with qsub -l walltime=2d -l mem=100mb -l scratch=40gb:ssd -l nodes=1:ppn=1 blasting.sh
 ## SCRIPT INPUT  *.fa sequences of collapsed files
 ## SCRIPT OUTPUT *.txt with number of how many sequences was mapped
 # The script blasts two files. If there is match it takes number of sequence that has been matched and adds it to variable 
