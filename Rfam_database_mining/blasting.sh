@@ -57,7 +57,7 @@ do
     echo $line >> "$temp"
   fi
   # first 50000 most numerous sequences this should take 40h to complete
-done < head -n100000 "$FILE"_collapsed.fa
+done < "$FILE"_collapsed_temp.fa
 
 
 ###BLASTING###
