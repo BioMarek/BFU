@@ -66,22 +66,21 @@ do
   touch "$FILE"_"$SUBJECT"_hits.txt # file containing number reads from $FILE aligned to $SUBJECT sequence
   touch "$FILE"_"$SUBJECT"_alignments.txt # file alignments of $FILE sequence to $SUBJECT sequence
   cat "$SUBJECT" >> "$FILE"_"$SUBJECT"_hits.txt # adds name and nucleotide sequence to the result file
-  RESULT=0
+  cat "$SUBJECT" >> "$FILE"_"$SUBJECT"_alignments.txt # adds name and nucleotide sequence to the result file
 
   for QUERY in *que.fa
   do
     blastn -query $QUERY -subject $SUBJECT > result
-    cat result >> "$FILE"_"$SUBJECT"_alignments.txt
     # -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
     if ! grep -q "No hits found" result
     then
+      cat result >> "$FILE"_"$SUBJECT"_alignments.txt
       # -o print only the matched (non-empty) parts of matching lines
       # -P interpret the pattern as a Perl-compatible regular expression (PCRE)
-      grep -o -P '(?<=Query= ).*(?= )' result | awk '{ RESULT += $1} # saves number of sequences that had been succesfully matched to res file
+      grep -o -P '(?<=Query= ).*(?= )' result >> "$FILE"_"$SUBJECT"_hits.txt # saves number of sequences that had been succesfully matched to res file
     fi
   done
   
-  cat $RESULT >> "$FILE"_"$SUBJECT"_hits.txt
   cp "$FILE"_"$SUBJECT"_hits.txt $OUTPUT_DIR
   cp "$FILE"_"$SUBJECT"_alignments.txt $OUTPUT_DIR
 done
