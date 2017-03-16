@@ -28,7 +28,7 @@ cd $SCRATCH
 count=1
 
 while read line
-do 
+do
   if [ ${line:0:1} == '>' ] # if first line is description create new file
   then
     touch Sub_"$count"ref.fa
@@ -64,12 +64,14 @@ done < "$FILE"_collapsed_temp.fa
 for SUBJECT in *ref.fa
 do
   touch "$FILE"_"$SUBJECT"_hits.txt
+  touch "$FILE"_"$SUBJECT"_alignments.txt
   cat "$SUBJECT" >> "$SUBJECT"_hits.txt # adds name and nucleotide sequence to the result file
   RESULT=0
 
   for QUERY in *que.fa
   do
     blastn -query $QUERY -subject $SUBJECT > result
+    result >> "$FILE"_"$SUBJECT"_alignments.txt
     # -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
     if ! grep -q "No hits found" result
     then
@@ -79,8 +81,8 @@ do
     fi
   done
   
-  $RESULT >> "$SUBJECT"_hits.txt
-  cp "$SUBJECT"_hits.txt $OUTPUT_DIR
+  $RESULT >> "$FILE"_"$SUBJECT"_hits.txt
+  cp "$FILE"_"$SUBJECT"_hits.txt $OUTPUT_DIR
 done
 
 rm *
