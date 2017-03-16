@@ -63,15 +63,15 @@ done < "$FILE"_collapsed_temp.fa
 ###BLASTING###
 for SUBJECT in *ref.fa
 do
-  touch "$FILE"_"$SUBJECT"_hits.txt
-  touch "$FILE"_"$SUBJECT"_alignments.txt
+  touch "$FILE"_"$SUBJECT"_hits.txt # file containing number reads from $FILE aligned to $SUBJECT sequence
+  touch "$FILE"_"$SUBJECT"_alignments.txt # file alignments of $FILE sequence to $SUBJECT sequence
   cat "$SUBJECT" >> "$SUBJECT"_hits.txt # adds name and nucleotide sequence to the result file
   RESULT=0
 
   for QUERY in *que.fa
   do
     blastn -query $QUERY -subject $SUBJECT > result
-    result >> "$FILE"_"$SUBJECT"_alignments.txt
+    cat result >> "$FILE"_"$SUBJECT"_alignments.txt
     # -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
     if ! grep -q "No hits found" result
     then
@@ -83,6 +83,7 @@ do
   
   $RESULT >> "$FILE"_"$SUBJECT"_hits.txt
   cp "$FILE"_"$SUBJECT"_hits.txt $OUTPUT_DIR
+  cp "$FILE"_"$SUBJECT"_alignments.txt $OUTPUT_DIR
 done
 
 rm *
