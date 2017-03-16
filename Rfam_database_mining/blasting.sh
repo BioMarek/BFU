@@ -70,8 +70,7 @@ do
   do
     blastn -query $QUERY -subject $SUBJECT > result
     # -q tells grep to retun only exit status; 0 if somethig was found; different number otherwise
-    # -v is reverse search
-    if grep -q -v "No hits found" result
+    if ! grep -q "No hits found" result
     then
       # -o print only the matched (non-empty) parts of matching lines
       # -P interpret the pattern as a Perl-compatible regular expression (PCRE)
