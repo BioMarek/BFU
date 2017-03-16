@@ -65,7 +65,7 @@ for SUBJECT in *ref.fa
 do
   touch "$FILE"_"$SUBJECT"_hits.txt # file containing number reads from $FILE aligned to $SUBJECT sequence
   touch "$FILE"_"$SUBJECT"_alignments.txt # file alignments of $FILE sequence to $SUBJECT sequence
-  cat "$SUBJECT" >> "$SUBJECT"_hits.txt # adds name and nucleotide sequence to the result file
+  cat "$SUBJECT" >> "$FILE"_"$SUBJECT"_hits.txt # adds name and nucleotide sequence to the result file
   RESULT=0
 
   for QUERY in *que.fa
@@ -81,7 +81,7 @@ do
     fi
   done
   
-  $RESULT >> "$FILE"_"$SUBJECT"_hits.txt
+  cat $RESULT >> "$FILE"_"$SUBJECT"_hits.txt
   cp "$FILE"_"$SUBJECT"_hits.txt $OUTPUT_DIR
   cp "$FILE"_"$SUBJECT"_alignments.txt $OUTPUT_DIR
 done
