@@ -77,7 +77,7 @@ do
     then
       # -o print only the matched (non-empty) parts of matching lines
       # -P interpret the pattern as a Perl-compatible regular expression (PCRE)
-      RESULT=$[RESULT + grep -o -P '(?<=Query= ).*(?= )' result]  # saves number of sequences that had been succesfully matched to res file
+      grep -o -P '(?<=Query= ).*(?= )' result | awk '{ RESULT += $1} # saves number of sequences that had been succesfully matched to res file
     fi
   done
   
