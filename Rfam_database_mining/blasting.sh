@@ -31,9 +31,9 @@ while read line
 do 
   if [ ${line:0:1} == '>' ] # if first line is description create new file
   then
-    touch Nicotiana_Rfam_seq_"$count"ref.fa
-    temp=Nicotiana_Rfam_seq_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
-    echo $line >> Nicotiana_Rfam_seq_"$count"ref.fa
+    touch Sub_"$count"ref.fa
+    temp=Sub_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
+    echo $line >> Sub_"$count"ref.fa
     count=$[count + 1]
   else
     # double quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
@@ -63,8 +63,9 @@ done < "$FILE"_collapsed_temp.fa
 ###BLASTING###
 for SUBJECT in *ref.fa
 do
-  touch "$SUBJECT"_hits.txt
+  touch "$FILE"_"$SUBJECT"_hits.txt
   cat "$SUBJECT" >> "$SUBJECT"_hits.txt # adds name and nucleotide sequence to the result file
+  RESULT=0
 
   for QUERY in *que.fa
   do
@@ -74,10 +75,11 @@ do
     then
       # -o print only the matched (non-empty) parts of matching lines
       # -P interpret the pattern as a Perl-compatible regular expression (PCRE)
-      grep -o -P '(?<=Query= ).*(?= )' result >> "$SUBJECT"_hits.txt # saves number of sequences that had been succesfully matched to res file
+      RESULT=$[RESULT + grep -o -P '(?<=Query= ).*(?= )' result]  # saves number of sequences that had been succesfully matched to res file
     fi
   done
   
+  $RESULT >> "$SUBJECT"_hits.txt
   cp "$SUBJECT"_hits.txt $OUTPUT_DIR
 done
 
