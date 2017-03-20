@@ -4,6 +4,7 @@
 ###INFORMATION ABOUT THE SCRIPT###
 ## SCRIPT INPUT  *.fasta file containing multiple sequences
 ## SCRIPT OUTPUT *.fasta files each containing single sequence
+# The script creates file in *.fasta format from nucleotide sequence. Required for blast.
 
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
