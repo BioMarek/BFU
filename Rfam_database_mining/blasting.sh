@@ -17,7 +17,7 @@ FILE=H11_A_ATCACG # file which is being calculated
 
 #######################################################################################################################
 ###SCRIPT BODY###
-module add blast+-2.2.27
+module add blast+-2.2.29
 
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
