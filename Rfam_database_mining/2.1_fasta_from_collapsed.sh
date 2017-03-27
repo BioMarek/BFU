@@ -21,6 +21,6 @@ cd $INPUT_DIR
 
 for file in *.txt
 do
-  # in the description there is sequence as a "name" and number of these sequences delimited by '|' character
+  # in the description there is number of sequences
   awk '{print ">" $1 "\n" $2}' $file > $OUTPUT_DIR/${file:0:12}_collapsed.fa
 done
