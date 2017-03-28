@@ -21,13 +21,14 @@ cd $INPUT_DIR
 
 module add bowtie-0.12.8
 
-## translate spaces to underscores because the name of sequence is truncated after first space
-#tr ' ' '_' < Nicotiana_Rfam_seq.fa > Nicotiana_Rfam_seq_tr.fa
 cp * $SCRATCH
 cd $SCRATCH
 
 #######################################################################################################################
 ###CREATING SINLGE FILES FROM REFERENCE###
+# translate spaces to underscores because the name of sequence is truncated after first space
+tr ' ' '_' < Nicotiana_Rfam_seq.fa > Nicotiana_Rfam_seq_tr.fa
+
 count=1
 
 # rework for 2 lines, if line starts with > create file and copy line into it else copy line into previous file
@@ -43,13 +44,11 @@ do
     # double quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
     echo $line >> "$temp"
   fi
-done < Nicotiana_Rfam_seq.fa
+done < Nicotiana_Rfam_seq_tr.fa
 
 
 #######################################################################################################################
 ###BOWTIE ALIGNMENT###
-# create index
-bowtie-build Nicotiana_Rfam_seq_tr.fa Nicotiana_Rfam
 
 for reference in *ref.fa 
 do
@@ -58,7 +57,7 @@ do
   # align
   for file in *collapsed.fa
   do
-    bowtie -f Nicotiana_Rfam $file | sort -t: -k2 > $OUTPUT_DIR/$reference_${file:0:12}_aligned.bow
+    bowtie -f Nicotiana_Rfam $file | sort -t: -k2 > $OUTPUT_DIR/"$reference"_${file:0:5}_aligned.bow
   done
 done
 
