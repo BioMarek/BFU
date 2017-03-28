@@ -26,25 +26,21 @@ cd $SCRATCH
 
 #######################################################################################################################
 ###CREATING SINLGE FILES FROM REFERENCE###
-# translate spaces to underscores because the name of sequence is truncated after first space
-tr ' ' '_' < Nicotiana_Rfam_seq.fa > Nicotiana_Rfam_seq_tr.fa
-
-count=1
-
+## translate spaces to underscores because the name of sequence is truncated after first space
+#tr ' ' '_' < Nicotiana_Rfam_seq.fa > Nicotiana_Rfam_seq_tr.fa
 # rework for 2 lines, if line starts with > create file and copy line into it else copy line into previous file
 while read line
 do
   if [ ${line:0:1} == '>' ] # if first line is description create new file 
   then
-    touch Nicotiana_Rfam_seq_"$count"ref.fa
-    temp=Nicotiana_Rfam_seq_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
-    echo $line >> Nicotiana_Rfam_seq_"$count"ref.fa
-    count=$[count + 1]
+    touch "$line"_ref.fa
+    temp="$line"_ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
+    echo $line >> "$line"_ref.fa
   else
     # double quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
     echo $line >> "$temp"
   fi
-done < Nicotiana_Rfam_seq_tr.fa
+done < Nicotiana_Rfam_seq.fa
 
 
 #######################################################################################################################
