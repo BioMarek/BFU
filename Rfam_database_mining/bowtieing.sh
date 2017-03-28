@@ -30,5 +30,5 @@ bowtie-build Nicotiana_Rfam_seq_tr.fa Nicotiana_Rfam
 # align
 for file in *collapsed.fa
 do
-  bowtie -f Nicotiana_Rfam $file | sort -t: -k2 > OUTPUT_DIR/${file:0:12}_aligned.bow
+  bowtie -f Nicotiana_Rfam $file | sort -t: -k2 > $OUTPUT_DIR/${file:0:12}_aligned.bow
 done
