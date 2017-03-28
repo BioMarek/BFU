@@ -26,7 +26,6 @@ module add bowtie-0.12.8
 cp * $SCRATCH
 cd $SCRATCH
 
-
 #######################################################################################################################
 ###CREATING SINLGE FILES FROM REFERENCE###
 count=1
@@ -36,9 +35,9 @@ while read line
 do
   if [ ${line:0:1} == '>' ] # if first line is description create new file 
   then
-    touch "$OUTPUT_DIR"/Nicotiana_Rfam_seq_"$count"ref.fa
-    temp="$OUTPUT_DIR"/Nicotiana_Rfam_seq_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
-    echo $line >> $OUTPUT_DIR/Nicotiana_Rfam_seq_"$count"ref.fa
+    touch Nicotiana_Rfam_seq_"$count"ref.fa
+    temp=Nicotiana_Rfam_seq_"$count"ref.fa # filename must be stored for the next cycle in which we save the sequence into said file
+    echo $line >> Nicotiana_Rfam_seq_"$count"ref.fa
     count=$[count + 1]
   else
     # double quotes gets rid of "ambiguous redirect" error http://stackoverflow.com/questions/2462385/getting-an-ambiguous-redirect-error 
@@ -52,7 +51,8 @@ done < Nicotiana_Rfam_seq.fa
 # create index
 bowtie-build Nicotiana_Rfam_seq_tr.fa Nicotiana_Rfam
 
-for reference in *ref.fa do
+for reference in *ref.fa 
+do
   # for each file creates reference index, the names are always same so they are rewritten
   bowtie-build $reference Nicotiana_Rfam
   # align
