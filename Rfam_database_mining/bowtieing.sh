@@ -34,5 +34,4 @@ do
   bowtie -f Nicotiana_Rfam $file | sort -k3 > $OUTPUT_DIR/${file:0:12}_aligned.bow
   # adds header necesary for pandas
   sed  -i '1i aligned \t strand\t name \t position \t sequence \t I \t 0 \t mismatch' $OUTPUT_DIR/${file:0:12}_aligned.bow
-  unix2dos $OUTPUT_DIR/${file:0:12}_aligned.bow
 done
