@@ -1,10 +1,18 @@
+#######################################################################################################################
+###INFORMATION ABOUT THE SCRIPT###
+## SCRIPT INPUT  *.bow file containing sorted alignments
+## SCRIPT OUTPUT *.counts file containing counts
+# The script takes bowtie aligned files and counts how many reads were aligned to each reference sequence
+
+#######################################################################################################################
+###SCRIPT BODY###
 import pandas
 
 processed_list = ['H11_B_CGATGT', 'H11_A_ATCACG', 'P1_A_CAGATC_', 'P1_B_ACTTGA_', 'P3_A_GATCAG_', 'P3_B_TAGCTT_',
                   'P8_A_TTAGGC_', 'P8_B_TGACCA_', 'REG_A_ACAGTG', 'REG_B_GCCAAT']
 
 for processed_file in processed_list:
-    f_result = open(processed_file + '_aligned_count.txt', 'w')
+    f_result = open(processed_file + '_aligned.counts', 'w')
     sequences = []
     count = 0
 
