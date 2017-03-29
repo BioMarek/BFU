@@ -3,7 +3,8 @@
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
 ## SCRIPT INPUT  *.fa sequences of collapsed files
-## SCRIPT OUTPUT 
+## SCRIPT OUTPUT *.bow file containing sorted alignments
+# The script alignes reads to the reference using bowtie algorithm
 
 # module add pbspro-client
 # qsub -l walltime=4:0:0 -l select=1:ncpus=4:mem=4gb:scratch_local=40gb -I
