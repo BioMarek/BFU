@@ -24,7 +24,7 @@ module add bowtie-0.12.8
 bowtie
 
 # translate spaces to underscores because the name of sequence is truncated after first space
-tr ' ' '_' < Nicotiana_Rfam_seq.fa > Nicotiana_Rfam_seq_tr.fa
+tr ' ' '_' < Nicotiana_Rfam_seq_no_duplicates.fa > Nicotiana_Rfam_seq_tr.fa
 # create index
 bowtie-build Nicotiana_Rfam_seq_tr.fa Nicotiana_Rfam
 
