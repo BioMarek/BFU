@@ -2,7 +2,7 @@
 #
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
-## SCRIPT INPUT  *.fa sequences of collapsed files
+## SCRIPT INPUT  *.fa sequences of collapsed files, *.fa reference file
 ## SCRIPT OUTPUT *.bow file containing sorted alignments
 # The script alignes reads to the reference using bowtie algorithm
 
@@ -12,7 +12,7 @@
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
-INPUT_DIR=$PROJECT_DIR/bowtie # path to input filtered sequences
+INPUT_DIR=$PROJECT_DIR/bowtie # path to input sequences and reference
 OUTPUT_DIR=$PROJECT_DIR/aligned # path to output sequences
 
 #######################################################################################################################
@@ -28,7 +28,7 @@ tr ' ' '_' < Nicotiana_Rfam_seq_no_duplicates.fa > Nicotiana_Rfam_seq_tr.fa
 # create index
 bowtie-build Nicotiana_Rfam_seq_tr.fa Nicotiana_Rfam
 
-# align
+# aligning 
 for file in *collapsed.fa
 do
   bowtie -f Nicotiana_Rfam $file | sort -k3 > $OUTPUT_DIR/${file:0:12}_aligned.bow
