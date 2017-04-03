@@ -22,8 +22,10 @@ for processed_file in processed_list:
         else:
             if df.iloc[i, 2] not in sequences:
                 sequences.append(df.iloc[i, 2])
-                #result_to_write = str(df.iloc[i, 2]) + ' ' + str(count) + '\n'
-                result_to_write = str(count) + '\n'
+                if processed_file == 'H11_A_ATCACG':
+                    result_to_write = str(df.iloc[i, 2]) + ' ' + str(count) + '\n'
+                else:
+                    result_to_write = str(count) + '\n'
                 f_result.write(result_to_write)
                 count = 0
             else:
