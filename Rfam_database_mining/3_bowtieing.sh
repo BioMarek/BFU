@@ -28,7 +28,7 @@ tr ' ' '_' < Nicotiana_Rfam_seq_no_duplicates.fa > Nicotiana_Rfam_seq_tr.fa
 # create index
 bowtie-build Nicotiana_Rfam_seq_tr.fa Nicotiana_Rfam
 
-# aligning 
+# aligning
 for file in *collapsed.fa
 do
   bowtie -f Nicotiana_Rfam $file | sort -k3 > $OUTPUT_DIR/${file:0:12}_aligned.bow
