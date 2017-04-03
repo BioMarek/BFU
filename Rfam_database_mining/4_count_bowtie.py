@@ -1,28 +1,22 @@
-#######################################################################################################################
-###INFORMATION ABOUT THE SCRIPT###
-## SCRIPT INPUT  *.bow file containing sorted alignments
-## SCRIPT OUTPUT *.counts file containing counts
-# The script takes bowtie aligned files and counts how many reads were aligned to each reference sequence
-
-#######################################################################################################################
-###SCRIPT BODY###
 import pandas
 
-processed_list = ['H11_B_CGATGT', 'H11_A_ATCACG', 'P1_A_CAGATC_', 'P1_B_ACTTGA_', 'P3_A_GATCAG_', 'P3_B_TAGCTT_',
+processed_list = ['H11_A_ATCACG', 'H11_B_CGATGT','P1_A_CAGATC_', 'P1_B_ACTTGA_', 'P3_A_GATCAG_', 'P3_B_TAGCTT_',
                   'P8_A_TTAGGC_', 'P8_B_TGACCA_', 'REG_A_ACAGTG', 'REG_B_GCCAAT']
 
+#processed_list = ['H11_A_ATCACG'] # switch comments to get first column wit names of sequences
 for processed_file in processed_list:
     f_result = open(processed_file + '_aligned.counts', 'w')
     sequences = []
     count = 0
 
-    input = open(processed_file + '_aligned.bow', 'r')
+    input_file = open(processed_file + '_aligned.bow', 'r')
 
-    df = pandas.read_csv(input, delimiter='\t')
+    df = pandas.read_csv(input_file, delimiter='\t')
 
     for i in range(len(df)):
         # deals with problem with first zero
         if i == 0:
+            # iloc takes specific field in matrix
             sequences.append(df.iloc[i, 2])
             count += int(df.iloc[i, 0])
         else:
@@ -34,5 +28,4 @@ for processed_file in processed_list:
                 count = 0
             else:
                 count += int(df.iloc[i, 0])
-
     f_result.close()
