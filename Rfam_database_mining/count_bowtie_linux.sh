@@ -1,4 +1,8 @@
-import pandas
+module add python26-modules-gcc
+module add python26-modules-intel
+
+python -c
+'import pandas
 
 processed_list = ['H11_A_ATCACG', 'H11_B_CGATGT','P1_A_CAGATC_', 'P1_B_ACTTGA_', 'P3_A_GATCAG_', 'P3_B_TAGCTT_',
                   'P8_A_TTAGGC_', 'P8_B_TGACCA_', 'REG_A_ACAGTG', 'REG_B_GCCAAT']
@@ -30,4 +34,4 @@ for processed_file in processed_list:
                 count = 0
             else:
                 count += int(df.iloc[i, 0])
-    f_result.close()
+    f_result.close()'
