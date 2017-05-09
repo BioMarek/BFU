@@ -15,7 +15,7 @@ processed_list = ['H11_B_CGATGT', 'H11_A_ATCACG', 'P1_A_CAGATC_', 'P1_B_ACTTGA_'
                   'P8_A_TTAGGC_', 'P8_B_TGACCA_', 'REG_A_ACAGTG', 'REG_B_GCCAAT']
 
 for processed_file in processed_list:
-    f_result = open(processed_file + '_r.txt', 'w')
+    f_result = open(processed_file + '.counts', 'w')
     f_result.write(processed_file + '\n')  # inserts name of processed sample
     f_input = open(processed_file + '.txt', 'r')
 
