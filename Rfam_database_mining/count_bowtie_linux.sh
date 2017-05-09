@@ -11,6 +11,6 @@ module add python26-modules-gcc
 module add python26-modules-intel
 
 # runs python script
-python -c $PROJECT_DIR/scripts/4_count_bowtie.py
+python $PROJECT_DIR/scripts/4_count_bowtie.py
 
 mv *_aligned.bow $OUTPUT_DIR
