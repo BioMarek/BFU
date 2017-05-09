@@ -27,7 +27,7 @@ mv *.counts $OUTPUT_DIR
 cd $OUTPUT_DIR
 
 # creates matrix file with header
-touch ncRNA_matrix_count.counts
+touch ncRNA_matrix_count.counts doesn't work use sed
 echo 'name\t H11_A \tH11_B \tP1_A \tP1_B \tP3_A \tP3_B \tP8_A \tP8_B \tREG_A \tREG_B' > ncRNA_matrix_count.counts
 
 # creates matrix file
