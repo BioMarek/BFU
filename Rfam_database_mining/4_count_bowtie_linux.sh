@@ -23,7 +23,7 @@ module add python26-modules-intel
 # runs python script
 python $PROJECT_DIR/scripts/4_count_bowtie.py
 
-mv *_aligned.bow $OUTPUT_DIR
+mv *.counts $OUTPUT_DIR
 cd $OUTPUT_DIR
 
 paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__aligned.counts P1_B_ACTTGA__aligned.counts \
