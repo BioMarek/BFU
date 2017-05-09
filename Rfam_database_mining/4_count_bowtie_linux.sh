@@ -4,7 +4,7 @@
 ###INFORMATION ABOUT THE SCRIPT###
 ## SCRIPT INPUT  *.bow files from bowtie
 ## SCRIPT OUTPUT *.counts matrix file containing counts from all files
-# The script runs python script to get counts and creates matrix for further analyses
+# The script runs python script to get counts and creates matrix from them for further analyses
 
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
