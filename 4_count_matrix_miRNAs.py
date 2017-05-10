@@ -9,7 +9,7 @@ from Bio import SeqIO
 # import datetime
 
 # start = datetime.datetime.now()
-print('Start time: ', start)
+# print('Start time: ', start)
 
 processed_list = ['H11_B_CGATGT', 'H11_A_ATCACG', 'P1_A_CAGATC_', 'P1_B_ACTTGA_', 'P3_A_GATCAG_', 'P3_B_TAGCTT_',
                   'P8_A_TTAGGC_', 'P8_B_TGACCA_', 'REG_A_ACAGTG', 'REG_B_GCCAAT']
