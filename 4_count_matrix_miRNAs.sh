@@ -1,5 +1,5 @@
 # TODO test it
-# error in python script remove duplicates
+# error in python script remove duplicates with comparison, probably due to archaic version of python/biopython
 #! /bin/bash
 #
 #######################################################################################################################
