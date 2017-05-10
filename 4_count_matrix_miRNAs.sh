@@ -1,4 +1,5 @@
 #TODO test it
+# error in python script with comparison which is not in python script used in rfam branch
 #! /bin/bash
 #
 #######################################################################################################################
