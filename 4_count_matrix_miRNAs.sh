@@ -1,5 +1,6 @@
 # TODO test it
 # error in python script remove duplicates with comparison, probably due to archaic version of python/biopython
+# try python 3.4 and instal your own modules
 #! /bin/bash
 #
 #######################################################################################################################
