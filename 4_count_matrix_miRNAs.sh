@@ -41,6 +41,4 @@ paste H11_A_ATCACG_temp.counts H11_B_CGATGT_temp.counts P1_A_CAGATC__temp.counts
 # add header, we have to go through temporary file because we cannot modify file and at the same time redirect 
 # output into it
 sed '1 i\name\t H11_A \tH11_B \tP1_A \tP1_B \tP3_A \tP3_B \tP8_A \tP8_B \tREG_A \tREG_B' counts_all.counts > temp
-mv temp ncRNA_matrix_count.counts
-
-rm *_temp.counts
+mv temp counts_all.counts
