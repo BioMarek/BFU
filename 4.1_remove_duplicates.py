@@ -10,6 +10,5 @@ for seq_record in SeqIO.parse("Nicotiana_miRNA_D_no_duplicates.fa", "fasta"):
         sequences.append(seq_record.seq)
         final_result = (">" +seq_record.description + '\n' + seq_record.seq + '\n')
 
-
 print(len(sequences))
 f_result.close()
