@@ -11,17 +11,21 @@
 ###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/collapsed # path to input sequences and reference
-OUTPUT_DIR=$PROJECT_DIR//count_matrix_all # path to output sequences
+OUTPUT_DIR=$PROJECT_DIR/count_matrix_all # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
 mkdir $OUTPUT_DIR
-cd $INPUT_DIR
 
 module add python27-modules-gcc
 module add python27-modules-intel
 
-# runs python script
+# runs python script to remove duplicates
+cd $PROJECT_DIR/reference
+python $PROJECT_DIR/scripts/4.1_remove_duplicates.py
+
+# runs python script to create count matrix
+cd $INPUT_DIR
 python $PROJECT_DIR/scripts/4_count_matrix_miRNAs.py
 
 mv *.counts $OUTPUT_DIR
