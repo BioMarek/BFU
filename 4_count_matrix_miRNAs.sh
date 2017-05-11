@@ -23,10 +23,10 @@ module add python27-modules-gcc
 module add python27-modules-intel
 
 # runs python script to remove duplicates
-cd $PROJECT_DIR/reference
-python $PROJECT_DIR/scripts/4.1_remove_duplicates.py
+# cd $PROJECT_DIR/reference
+# python $PROJECT_DIR/scripts/4.1_remove_duplicates.py
 # copies reference file to INPUT_DIR so that all input files are in one place
-mv Nicotiana_miRNA_D_no_duplicates.fa $INPUT_DIR
+# mv Nicotiana_miRNA_D_no_duplicates.fa $INPUT_DIR
 
 # runs python script to create count matrix
 cd $INPUT_DIR
