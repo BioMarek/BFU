@@ -26,15 +26,12 @@ for processed_file in processed_list:
             if sequence[1] == seq_record.seq:
                 # I use final result variable because I want to print it on screen and into file, also it has to be string
                 # to write it in file
-                final_result = seq_record.id + ',' + sequence[0] + '\n'
-                # print(final_result)  # INFO
-                f_result.write('\n\n HIT' + final_result)
+                final_result = sequence[0] + '\n'
                 break
         # for-else design, very useful, if there is no sequence found and end of file is reached we can print 0
         else:
-            final_result = (seq_record.id + ',0\n')
-            # print(final_result)  # INFO
-            f_result.write(final_result)
+            final_result = '0\n'
+        f_result.write(final_result)
 
     f_result.close()
     f_input.close()
