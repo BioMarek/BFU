@@ -1,3 +1,4 @@
+# TODO not working make a new script 
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
 # The script takes preprocessed sequencing file (see pipeline) and creates count matrix for DESeq2 analysis. Commonly
