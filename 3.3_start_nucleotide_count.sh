@@ -19,9 +19,9 @@ cd $DATASET_DIR
 
 for file in *mirna.fastq.gz
 do
-  mkdir $OUTPUT_DIR/file
-  gunzip -c $file  | sed -n 'n;p;n;n;' > $OUTPUT_DIR/file/temp
-  cd $OUTPUT_DIR/file
+  mkdir $OUTPUT_DIR/${file:0:5}
+  gunzip -c $file  | sed -n 'n;p;n;n;' > $OUTPUT_DIR/${file:0:5}/temp
+  cd $OUTPUT_DIR/${file:0:5}
   while read line
   do
     # takes a lines and redirects them int files based on length
