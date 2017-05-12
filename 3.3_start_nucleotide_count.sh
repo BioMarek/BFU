@@ -24,3 +24,8 @@ cd $DATASET_DIR
 #done
 
 gunzip -c H11_A_ATCACG_mirna.fastq.gz  | sed -n 'n;p;n;n;' > temp
+
+while read line
+do
+  wc -c $line >> temp2
+done < temp
