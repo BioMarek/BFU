@@ -17,7 +17,10 @@ OUTPUT_DIR=$PROJECT_DIR/start_counts # path to output sequences
 mkdir $OUTPUT_DIR
 cd $DATASET_DIR
 
-for file in *mirna.fastq.gz
-do
+#for file in *mirna.fastq.gz
+#do
+#  gunzip -c $file  | sed -n 'n;p;n;n;' > temp
+  
+#done
 
-done
+gunzip -c H11_A_ATCACG_mirna.fastq.gz  | sed -n 'n;p;n;n;' > temp
