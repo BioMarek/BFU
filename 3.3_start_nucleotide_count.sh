@@ -28,6 +28,5 @@ gunzip -c H11_A_ATCACG_mirna.fastq.gz  | sed -n 'n;p;n;n;' > temp
 while read line
 do
   # echo ${#line} >> temp2
-  name=`echo ${#line}`
-  echo $line >> '$name'
+  echo $line >> `echo ${#line}`
 done < temp
