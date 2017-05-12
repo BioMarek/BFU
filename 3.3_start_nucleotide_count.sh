@@ -28,4 +28,5 @@ do
     # echo ${#line} measures the lenght of line
     echo $line >> `echo ${#line}`
   done < temp
+  rm temp
 done
