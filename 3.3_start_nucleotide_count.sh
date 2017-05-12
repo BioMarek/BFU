@@ -17,16 +17,15 @@ OUTPUT_DIR=$PROJECT_DIR/start_counts # path to output sequences
 mkdir $OUTPUT_DIR
 cd $DATASET_DIR
 
-#for file in *mirna.fastq.gz
-#do
-#  gunzip -c $file  | sed -n 'n;p;n;n;' > temp
-  
-#done
-
-gunzip -c H11_A_ATCACG_mirna.fastq.gz  | sed -n 'n;p;n;n;' > temp
-
-while read line
+for file in *mirna.fastq.gz
 do
-  # takes a lines and redirects them int files based on length
-  echo $line >> `echo ${#line}`
-done < temp
+  mkdir $OUTPUT_DIR/file
+  gunzip -c $file  | sed -n 'n;p;n;n;' > $OUTPUT_DIR/file/temp
+  cd $OUTPUT_DIR/file
+  while read line
+  do
+    # takes a lines and redirects them int files based on length
+    # echo ${#line} measures the lenght of line
+    echo $line >> `echo ${#line}`
+  done < temp
+done
