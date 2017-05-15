@@ -1,3 +1,5 @@
+# TODO it doesn't work!!
+
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
 ## SCRIPT INPUT  *.bow files from bowtie
