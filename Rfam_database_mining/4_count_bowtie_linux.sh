@@ -17,6 +17,13 @@ OUTPUT_DIR=$PROJECT_DIR/bow_counts # path to output sequences
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
 
+# sorts all files based on their name (third column)
+for file in *aligned.bow
+do
+      sort -k 3 $file > temp
+      mv temp $file
+done
+
 module add python26-modules-gcc
 module add python26-modules-intel
 
