@@ -6,7 +6,6 @@ processed_list = ['H11_A_ATCACG', 'H11_B_CGATGT', 'P1_A_CAGATC_', 'P1_B_ACTTGA_'
 # creates reference list with names of sequences
 sequences = []
 for processed_file in processed_list:
-    print('working on: ', processed_file)  #INFO
     input_file = open(processed_file + '_aligned.bow', 'r')
     df = pandas.read_csv(input_file, delimiter='\t')
 
@@ -16,12 +15,7 @@ for processed_file in processed_list:
 
     input_file.close()
 
-for i in range(len(sequences)):  #INFO
-    print(sequences[i])  #INFO
-
 # creates count matrix for each file
-processed_list = ['H11_A_ATCACG', 'H11_B_CGATGT',] #INFO
-
 # goes through each file
 for processed_file in processed_list:
     f_result = open(processed_file + '_aligned.counts', 'w')
@@ -31,12 +25,10 @@ for processed_file in processed_list:
     # goes through each sequence in reference list
     for seq in range(len(sequences)):
         count = 0
-        print('working on: ', sequences[seq])  #INFO
         # goes through each line in processed_file and compares with analyzed sequence
         for i in range(len(df)):
             if df.iloc[i, 2] == sequences[seq]:
                 count += int(df.iloc[i, 0])
-
 
         if processed_file == 'H11_A_ATCACG':
             result_to_write = sequences[seq] + ' ' + str(count) + '\n'
