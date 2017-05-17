@@ -19,7 +19,7 @@ cd $INPUT_DIR
 cp * $SCRATCH
 cd $SCRATCH
 
-# removes first linesorts all files based on their name (third column)
+# removes first line and sorts all files based on their name (third column)
 for file in *aligned.bow
 do
       sed '1d' $file | sort -k 3 > temp
