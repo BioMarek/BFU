@@ -8,6 +8,7 @@
 
 # module add pbspro-client
 # qsub -l walltime=4:0:0 -q default -l select=1:ncpus=4:mem=4gb:scratch_local=40gb -I
+# qdel 
 
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
