@@ -3,8 +3,8 @@
 #######################################################################################################################
 ###INFORMATION ABOUT THE SCRIPT###
 ## SCRIPT INPUT  *.bow files from bowtie
-## SCRIPT OUTPUT *.counts matrix file containing counts from all files
-# The script runs python script to get counts and creates matrix from them for further analyses
+## SCRIPT OUTPUT *.counts matrix of file given as argument
+# The script runs python script to get counts of *.bow file given as argument
 
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
