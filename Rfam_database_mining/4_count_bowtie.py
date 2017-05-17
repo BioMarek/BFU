@@ -1,6 +1,7 @@
 import pandas
 import sys
 
+# list of files with sequences from which the reference will be made
 processed_list = ['H11_A_ATCACG', 'H11_B_CGATGT', 'P1_A_CAGATC_', 'P1_B_ACTTGA_', 'P3_A_GATCAG_', 'P3_B_TAGCTT_',
                   'P8_A_TTAGGC_', 'P8_B_TGACCA_', 'REG_A_ACAGTG', 'REG_B_GCCAAT']
 
@@ -17,7 +18,6 @@ for processed_file in processed_list:
     input_file.close()
 
 # creates count matrix for file given in argument
-# goes through each file in argument version there is only one file so improve this part
 processed_file = str(sys.argv[1])
 f_result = open(processed_file + '_aligned.counts', 'w')
 input_file = open(processed_file + '_aligned.bow', 'r')
@@ -32,9 +32,11 @@ for seq in range(len(sequences)):
         if df.iloc[i, 2] == sequences[seq]:
             flag = 1
             count += int(df.iloc[i, 0])
+        # if we are in the block of sequence which are being sounted (flag == 1) but the name of sequence changed we are
+        # we at the next sequence and we need to start counting the next sequence
         if (df.iloc[i, 2] != sequences[seq]) and flag == 1:
             break
-
+    # for more convenient merging the first counted file will have names of sequences in the first column
     if processed_file == 'H11_A_ATCACG':
         result_to_write = sequences[seq] + ' ' + str(count) + '\n'
     else:
