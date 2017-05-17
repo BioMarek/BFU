@@ -1,4 +1,5 @@
 import pandas
+import sys
 
 processed_list = ['H11_A_ATCACG', 'H11_B_CGATGT', 'P1_A_CAGATC_', 'P1_B_ACTTGA_', 'P3_A_GATCAG_', 'P3_B_TAGCTT_',
                   'P8_A_TTAGGC_', 'P8_B_TGACCA_', 'REG_A_ACAGTG', 'REG_B_GCCAAT']
@@ -15,9 +16,10 @@ for processed_file in processed_list:
 
     input_file.close()
 
-###WHEN USING LINUX SORTED FILES PANDAS THROEUWS WARNING.
-# creates count matrix for each file
-# goes through each file
+# creates count matrix for file given in argument
+processed_list.append(sys.argv[0])
+
+# goes through each file in argument version there is only one file so improve this part
 for processed_file in processed_list:
     f_result = open(processed_file + '_aligned.counts', 'w')
     input_file = open(processed_file + '_aligned.bow', 'r')
