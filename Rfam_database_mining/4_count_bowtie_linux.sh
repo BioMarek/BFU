@@ -17,21 +17,19 @@ OUTPUT_DIR=$PROJECT_DIR/bow_counts # path to output sequences
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
 
-# sorts all files based on their name (third column)
+# removes first linesorts all files based on their name (third column)
 for file in *aligned.bow
 do
-      sort -k 3 $file > temp
-      mv temp $file
+      sed '1d' $file | sort -k 3  > temp
+      mv temp $OUTPUT_DIR/$file
 done
 
 module add python26-modules-gcc
 module add python26-modules-intel
 
+cd $OUTPUT_DIR
 # runs python script
 python $PROJECT_DIR/scripts/4_count_bowtie.py
-
-mv *.counts $OUTPUT_DIR
-cd $OUTPUT_DIR
 
 # creates matrix file
 paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__aligned.counts P1_B_ACTTGA__aligned.counts \
