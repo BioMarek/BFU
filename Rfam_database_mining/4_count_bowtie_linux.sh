@@ -29,7 +29,7 @@ module add python26-modules-intel
 
 cd $OUTPUT_DIR
 # runs python script with argument telling which file to work on
-python $PROJECT_DIR/scripts/4_count_bowtie.py -s $1
+python $PROJECT_DIR/scripts/4_count_bowtie.py $1
 
 # creates matrix file
 paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__aligned.counts P1_B_ACTTGA__aligned.counts \
