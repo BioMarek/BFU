@@ -16,20 +16,22 @@ OUTPUT_DIR=$PROJECT_DIR/bow_counts # path to output sequences
 ###SCRIPT BODY###
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
+cp * $SCRATCH
+cd $SCRATCH
 
 # removes first linesorts all files based on their name (third column)
 for file in *aligned.bow
 do
       sed '1d' $file | sort -k 3 > temp
-      mv temp $OUTPUT_DIR/$file
+      mv temp $file
 done
 
 module add python26-modules-gcc
 module add python26-modules-intel
 
-cd $OUTPUT_DIR
 # runs python script with argument telling which file to work on
-python $PROJECT_DIR/scripts/4_count_bowtie.py $1
+cp $PROJECT_DIR/scripts/4_count_bowtie.py $SCRATCH
+python 4_count_bowtie.py $1
 
 # creates matrix file
 paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__aligned.counts P1_B_ACTTGA__aligned.counts \
@@ -39,6 +41,6 @@ paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__align
 # add header, we have to go through temporary file because we cannot modify file and at the same time redirect 
 # output into it
 sed '1 i\name\t H11_A \tH11_B \tP1_A \tP1_B \tP3_A \tP3_B \tP8_A \tP8_B \tREG_A \tREG_B' ncRNA_matrix_count.counts > temp
-mv temp ncRNA_matrix_count.counts
+mv temp $OUTPUT_DIR/ncRNA_matrix_count.counts
 
-rm *aligned.counts
+rm *
