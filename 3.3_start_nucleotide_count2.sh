@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+# http://stackoverflow.com/questions/11006431/sort-by-third-column-leaving-first-and-second-column-intact-in-linux
 
 for i in `cat your_file`
 do 
