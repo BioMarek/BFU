@@ -20,7 +20,7 @@ cd $INPUT_DIR
 # removes first linesorts all files based on their name (third column)
 for file in *aligned.bow
 do
-      sed '1d' $file | sort -k 3  > temp
+      sed '1d' $file | sort -k 3 > temp
       mv temp $OUTPUT_DIR/$file
 done
 
@@ -40,5 +40,5 @@ paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__align
 # output into it
 sed '1 i\name\t H11_A \tH11_B \tP1_A \tP1_B \tP3_A \tP3_B \tP8_A \tP8_B \tREG_A \tREG_B' ncRNA_matrix_count.counts > temp
 mv temp ncRNA_matrix_count.counts
-      
+
 rm *aligned.counts
