@@ -18,7 +18,7 @@ for processed_file in processed_list:
 
 # creates count matrix for file given in argument
 # goes through each file in argument version there is only one file so improve this part
-processed_file = str(sys.argv[1])
+processed_file = str(sys.argv[0])
 f_result = open(processed_file + '_aligned.counts', 'w')
 input_file = open(processed_file + '_aligned.bow', 'r')
 df = pandas.read_csv(input_file, delimiter='\t')
