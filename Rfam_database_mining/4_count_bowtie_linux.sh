@@ -28,7 +28,7 @@ module add python26-modules-gcc
 module add python26-modules-intel
 
 cd $OUTPUT_DIR
-# runs python script
+# runs python script with argument telling which file to work on
 python $PROJECT_DIR/scripts/4_count_bowtie.py $1
 
 # creates matrix file
