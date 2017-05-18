@@ -5,6 +5,7 @@
 ## SCRIPT INPUT  *.bow files from bowtie
 ## SCRIPT OUTPUT *.counts matrix of file given as argument
 # The script runs python script to get counts of *.bow file given as argument
+# Run using: qsub -l walltime=12:0:0 -q default -l select=1:ncpus=1:mem=1gb:scratch_local=1gb 4_count_bowtie.sh
 
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
