@@ -37,6 +37,7 @@ do
   sed  -i '1i aligned \t strand\t name \t position \t sequence \t I \t 0 \t mismatch' $OUTPUT_DIR/${file:0:12}_aligned.bow
 done
 
+# removes first line (description) so that we can use the python script in subsequent step
 cd $OUTPUT_DIR
 for file in *aligned.bow
 do
