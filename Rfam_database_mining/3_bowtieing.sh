@@ -36,3 +36,11 @@ do
   # adds header necesary for pandas
   sed  -i '1i aligned \t strand\t name \t position \t sequence \t I \t 0 \t mismatch' $OUTPUT_DIR/${file:0:12}_aligned.bow
 done
+
+cd $OUTPUT_DIR
+for file in *aligned.bow
+do
+      sed '1d' $file | sort -k 3 > temp
+      mv temp $file
+done
+
