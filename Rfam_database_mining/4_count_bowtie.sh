@@ -30,4 +30,5 @@ paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__align
 # add header, we have to go through temporary file because we cannot modify file and at the same time redirect 
 # output into it
 sed '1 i\name\t H11_A \tH11_B \tP1_A \tP1_B \tP3_A \tP3_B \tP8_A \tP8_B \tREG_A \tREG_B' ncRNA_matrix_count.counts > temp
-mv temp ncRNA_matrix_count.counts
+mv temp $OUTPUT_DIR/ncRNA_matrix_count.counts
+rm *.counts
