@@ -20,7 +20,7 @@ cd $INPUT_DIR
 # adding modules and running python script which creates *.counts
 module add python27-modules-gcc
 module add python27-modules-intel
-python 4_count_bowtie.py
+python $PROJECT_DIR/scripts/4_count_bowtie.py
 
 # creates matrix file
 paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__aligned.counts P1_B_ACTTGA__aligned.counts \
