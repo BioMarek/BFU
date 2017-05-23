@@ -1,3 +1,14 @@
+#######################################################################################################################
+###INFORMATION ABOUT THE SCRIPT###
+## SCRIPT INPUT  *aligned.bow files from bowtie
+## SCRIPT OUTPUT *.counts for each input file
+# goes through each sequence in soted reference list and then goes through sorted lines in processed file. If name 
+# of the sequence is on the line the count is increased and then next line is processed. If the line has another sequence 
+# stops counting and saves number of the line in order to use it as a starting position in for the next sequence this 
+# program goes through each processed file only once.
+
+#######################################################################################################################
+###SCRIPT BODY###
 import pandas
 
 
@@ -26,9 +37,10 @@ for processed_file in processed_list:
             sequences.append(df.iloc[i, 2])
 
     input_file.close()
-    sequences.sort()
 
-# creates count matrix for file given in argument
+sequences.sort() # we count on that the input and reference sequence list is sorted
+
+# creates count matrix for each file
 for processed_file in processed_list:
     f_result = open(processed_file + '_aligned.counts', 'w')
     input_file = open(processed_file + '_aligned.bow', 'r')
@@ -36,9 +48,8 @@ for processed_file in processed_list:
 
     limit = len(df)
     start = 0
-    # goes through each sequence in reference list
+
     for seq in range(len(sequences)):
-        print('working on ' + sequences[seq])
 
         start, count = searcher(sequences[seq], start, limit)
 
