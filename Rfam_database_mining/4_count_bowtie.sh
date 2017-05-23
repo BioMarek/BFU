@@ -18,8 +18,8 @@ mkdir $OUTPUT_DIR
 cd $INPUT_DIR
 
 # adding modules and running python script which creates *.counts
-python27-modules-gcc
-python27-modules-intel
+module add python27-modules-gcc
+module add python27-modules-intel
 python 4_count_bowtie.py
 
 # creates matrix file
