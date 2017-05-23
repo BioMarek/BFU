@@ -34,14 +34,14 @@ for file in *collapsed.fa
 do
   bowtie -f Nicotiana_Rfam $file | sort -k3 > $OUTPUT_DIR/${file:0:12}_aligned.bow
   # adds header necesary for pandas
-  sed  -i '1i aligned \t strand\t name \t position \t sequence \t I \t 0 \t mismatch' $OUTPUT_DIR/${file:0:12}_aligned.bow
+  # sed  -i '1i aligned \t strand\t name \t position \t sequence \t I \t 0 \t mismatch' $OUTPUT_DIR/${file:0:12}_aligned.bow
 done
 
 # removes first line (description) so that we can use the python script in subsequent step
-cd $OUTPUT_DIR
-for file in *aligned.bow
-do
-      sed '1d' $file | sort -k 3 > temp
-      mv temp $file
-done
+#cd $OUTPUT_DIR
+#for file in *aligned.bow
+#do
+#      sed '1d' $file | sort -k 3 > temp
+#      mv temp $file
+#done
 
