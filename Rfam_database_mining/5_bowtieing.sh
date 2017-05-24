@@ -11,8 +11,8 @@
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
-INPUT_DIR=$PROJECT_DIR/bowtie # path to input sequences and reference
-OUTPUT_DIR=$PROJECT_DIR/aligned # path to output sequences
+INPUT_DIR=$PROJECT_DIR/smRNA/bowtie # path to input sequences and reference
+OUTPUT_DIR=$PROJECT_DIR/smRNA/aligned # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
