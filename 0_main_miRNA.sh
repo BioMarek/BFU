@@ -15,8 +15,8 @@ do
   dos2unix $file
 done
 
-./1_trimming.sh
-./2_filtering_miRNA.sh
-./3.1_fastqc_miRNA.sh
-./3.2_counting_miRNA.sh
-./3_collapsing_miRNA.sh
+./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/1_trimming.sh
+./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/2_filtering_miRNA.sh
+./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/3.1_fastqc_miRNA.sh
+./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/3.2_counting_miRNA.sh
+./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/3_collapsing_miRNA.sh
