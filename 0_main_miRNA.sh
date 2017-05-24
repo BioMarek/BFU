@@ -6,11 +6,10 @@
 # Start with: qsub -l walltime=12:0:0 -q default -l select=1:ncpus=2:mem=2gb:scratch_local=40gb 0_main_miRNA.sh
 # Stop with:  qdel 
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA
-cd $PROJECT_DIR
 
 #######################################################################################################################
 ###SCRIPT BODY###
-cd /storage/brno7-cerit/home/marek_bfu/smRNA/scripts/
+cd $PROJECT_DIR/scripts/
 chmod 700 *.sh
 dos2unix *.sh
 ./1_trimming.sh
