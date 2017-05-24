@@ -16,7 +16,7 @@ DISC_SHORT=15 # trim shorater than
 DISC_LONG=40 # trim longer than, it that high because of because of 30 something peak in nicotiana
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/trimmed # path to input sequences without adapters
-OUTPUT_DIR=$PROJECT_DIR/filtered_mirna # path to output sequences
+OUTPUT_DIR=$PROJECT_DIR/miRNA/filtered # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
