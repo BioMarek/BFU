@@ -10,7 +10,7 @@
 
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 INPUT_DIR=$PROJECT_DIR/smRNA/filtered # path to input filtered sequences
-OUTPUT_DIR=$PROJECT_DIR/smRNA/collapsed # path to output sequences
+OUTPUT_DIR=$PROJECT_DIR/ncRNA/collapsed # path to output sequences
 
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
