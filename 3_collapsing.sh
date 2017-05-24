@@ -9,8 +9,8 @@
 # sequences with only one hit are discarded
 
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
-INPUT_DIR=$PROJECT_DIR/filtered # path to input filtered sequences
-OUTPUT_DIR=$PROJECT_DIR/collapsed # path to output sequences
+INPUT_DIR=$PROJECT_DIR/miRNA/filtered # path to input filtered sequences
+OUTPUT_DIR=$PROJECT_DIR/miRNA/collapsed # path to output sequences
 
 mkdir $OUTPUT_DIR
 cd $INPUT_DIR
