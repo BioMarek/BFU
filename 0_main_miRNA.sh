@@ -9,14 +9,15 @@ cd $PROJECT_DIR
 
 #######################################################################################################################
 ###SCRIPT BODY###
-for file in *.sh
-do
-  chmod 700 $file
-  dos2unix $file
-done
+cd /storage/brno7-cerit/home/marek_bfu/smRNA/scripts/
+chmod 700 *
+dos2unix $file *
+./1_trimming.sh
 
-./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/1_trimming.sh
-./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/2_filtering_miRNA.sh
-./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/3.1_fastqc_miRNA.sh
-./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/3.2_counting_miRNA.sh
-./storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA/3_collapsing_miRNA.sh
+cd /storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA
+chmod 700 *
+dos2unix $file *
+./2_filtering_miRNA.sh
+./3.1_fastqc_miRNA.sh
+./3.2_counting_miRNA.sh
+./3_collapsing_miRNA.sh
