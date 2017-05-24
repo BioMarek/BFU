@@ -9,8 +9,8 @@
 #######################################################################################################################
 ##SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
-DATASET_DIR=$PROJECT_DIR/filtered # path to input sequences
-OUTPUT_DIR=$PROJECT_DIR/fastqc_after_filt # path to output sequences
+DATASET_DIR=$PROJECT_DIR/miRNA/filtered # path to input sequences
+OUTPUT_DIR=$PROJECT_DIR/miRNA/fastqc_after_filt # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
