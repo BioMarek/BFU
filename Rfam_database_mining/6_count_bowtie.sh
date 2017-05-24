@@ -9,8 +9,8 @@
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
-INPUT_DIR=$PROJECT_DIR/aligned # path to input sequences and reference
-OUTPUT_DIR=$PROJECT_DIR/bow_counts # path to output
+INPUT_DIR=$PROJECT_DIR/smRNA/aligned # path to input sequences and reference
+OUTPUT_DIR=$PROJECT_DIR/smRNA/bow_counts # path to output
 
 #######################################################################################################################
 ###SCRIPT BODY###
@@ -32,3 +32,8 @@ paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__align
 sed '1 i\name\t H11_A \tH11_B \tP1_A \tP1_B \tP3_A \tP3_B \tP8_A \tP8_B \tREG_A \tREG_B' ncRNA_matrix_count.counts > temp
 mv temp $OUTPUT_DIR/ncRNA_matrix_count.counts
 rm *.counts
+
+# in subsequent steps different python modules are required, when two version of python module are loaded scripts
+# dont't work as intended
+module unload python34-modules-gcc
+module unload python34-modules-intel
