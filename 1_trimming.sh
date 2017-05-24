@@ -37,3 +37,8 @@ do
 done
 
 rm -rf *
+
+# in subsequent steps different python modules are required, when two version of python module are loaded scripts
+# dont't work as intended
+module unload python27-modules-gcc
+module unload python27-modules-intel
