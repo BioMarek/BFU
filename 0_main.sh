@@ -16,7 +16,7 @@ do
 done
 
 ./1_trimming.sh
-./2_filtering.sh
-./3.1_fastqc.sh
-./3.2_counting.sh
-./3_collapsing.sh
+./2_filtering_miRNA.sh
+./3.1_fastqc_miRNA.sh
+./3.2_counting_miRNA.sh
+./3_collapsing_miRNA.sh
