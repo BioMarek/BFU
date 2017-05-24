@@ -25,7 +25,7 @@ done
 cd $SCRATCH
 module add fastQC-0.10.1
 
-# STDIN for FastQC doesn't so work we have to decompress files
+# STDIN for FastQC doesn't work so we have to decompress files
 for file in *mirna.fastq.gz
 do
    gzip -d $file 
