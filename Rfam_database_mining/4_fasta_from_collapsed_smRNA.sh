@@ -11,8 +11,8 @@
 #######################################################################################################################
 ##SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
-INPUT_DIR=$PROJECT_DIR/smRNA/collapsed # path to input filtered sequences
-OUTPUT_DIR=$PROJECT_DIR/smRNA/bowtie # path to output sequences
+INPUT_DIR=$PROJECT_DIR/ncRNA/collapsed # path to input filtered sequences
+OUTPUT_DIR=$PROJECT_DIR/ncRNA/bowtie # path to output sequences
 
 #######################################################################################################################
 
