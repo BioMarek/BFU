@@ -10,13 +10,13 @@ cd $PROJECT_DIR
 #######################################################################################################################
 ###SCRIPT BODY###
 cd /storage/brno7-cerit/home/marek_bfu/smRNA/scripts/
-chmod 700 *
-dos2unix $file *
+chmod 700 *.sh
+dos2unix $file *.sh
 ./1_trimming.sh
 
 cd /storage/brno7-cerit/home/marek_bfu/smRNA/scripts/miRNA
-chmod 700 *
-dos2unix $file *
+chmod 700 *.sh
+dos2unix $file *.sh
 ./2_filtering_miRNA.sh
 ./3.1_fastqc_miRNA.sh
 ./3.2_counting_miRNA.sh
