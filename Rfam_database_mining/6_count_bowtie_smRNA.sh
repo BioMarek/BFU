@@ -9,8 +9,8 @@
 #######################################################################################################################
 ###SPECIFY DATA VARIABLES###
 PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
-INPUT_DIR=$PROJECT_DIR/smRNA/aligned # path to input sequences and reference
-OUTPUT_DIR=$PROJECT_DIR/smRNA/bow_counts # path to output
+INPUT_DIR=$PROJECT_DIR/ncRNA/aligned # path to input sequences and reference
+OUTPUT_DIR=$PROJECT_DIR/ncRNA/bow_counts # path to output
 
 #######################################################################################################################
 ###SCRIPT BODY###
@@ -20,7 +20,7 @@ cd $INPUT_DIR
 # adding modules and running python script which creates *.counts
 module add python34-modules-gcc
 module add python34-modules-intel
-python $PROJECT_DIR/smRNA/scripts/6_count_bowtie_smRNA.py
+python $PROJECT_DIR/ncRNA/scripts/6_count_bowtie_smRNA.py
 
 # creates matrix file
 paste H11_A_ATCACG_aligned.counts H11_B_CGATGT_aligned.counts P1_A_CAGATC__aligned.counts P1_B_ACTTGA__aligned.counts \
