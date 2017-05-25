@@ -15,9 +15,9 @@ INPUT_DIR=$PROJECT_DIR/ncRNA/collapsed # path to input filtered sequences
 OUTPUT_DIR=$PROJECT_DIR/ncRNA/bowtie # path to output sequences
 
 #######################################################################################################################
-
 ###SCRIPT BODY###
 cd $INPUT_DIR
+mkdir -p $OUTPUT_DIR
 
 for file in *.txt
 do
