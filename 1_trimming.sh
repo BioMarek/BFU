@@ -26,7 +26,7 @@ do
 done
 
 cd $SCRATCH
-mkdir $OUTPUT_DIR
+mkdir -p $OUTPUT_DIR
 
 for file in *.fastq.gz
 do
