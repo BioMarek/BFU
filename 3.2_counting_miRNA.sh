@@ -14,7 +14,7 @@ OUTPUT_DIR=$PROJECT_DIR/miRNA/counts # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
-mkdir $OUTPUT_DIR
+mkdir -p $OUTPUT_DIR
 cd $DATASET_DIR
 
 for file in *mirna.fastq.gz
