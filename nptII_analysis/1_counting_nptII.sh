@@ -18,7 +18,7 @@ cd $DATASET_DIR
 
 for file in *.fasta
 do
-   # leaves sequences from fastq file, removes everything else, awk prints lengths of sequencs; uniq counts the sequences.
+   # leaves sequences from fasta file, removes everything else, awk prints lengths of sequencs; uniq counts the sequences.
    sed -n 'n;p;' $file | awk '{print length}' | sort | uniq -c > $OUTPUT_DIR/${file:0:3}_counts.txt
    # chmod sets access right so that only owner can work with file
    chmod 700 $OUTPUT_DIR/${file:0:3}_counts.txt
