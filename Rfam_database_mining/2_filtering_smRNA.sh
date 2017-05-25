@@ -20,7 +20,7 @@ OUTPUT_DIR=$PROJECT_DIR/ncRNA/filtered # path to output sequences
 
 #######################################################################################################################
 ###SCRIPT BODY###
-mkdir $OUTPUT_DIR
+mkdir -p $OUTPUT_DIR
 cd $INPUT_DIR
 
 module add python27-modules-gcc  
