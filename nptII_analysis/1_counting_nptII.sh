@@ -16,8 +16,8 @@ OUTPUT_DIR=$PROJECT_DIR/nptII/counts # path to output sequences
 mkdir -p $OUTPUT_DIR
 cd $DATASET_DIR
 
-module add python34-modules-gcc
-module add python34-modules-intel
+module add python26-modules-gcc
+module add python26-modules-intel
 
 for file in *.fasta
 do
@@ -27,5 +27,5 @@ do
    chmod 700 $OUTPUT_DIR/${file:0:3}_count.txt
 done
 
-module unload python34-modules-gcc
-module unload python34-modules-intel
+module unload python26-modules-gcc
+module unload python26-modules-intel
