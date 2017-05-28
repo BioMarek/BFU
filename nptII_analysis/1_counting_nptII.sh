@@ -22,7 +22,8 @@ module add python26-modules-intel
 for file in *.fasta
 do
    python /storage/brno7-cerit/home/marek_bfu/smRNA/scripts/nptII/1_counting_nptII.py $file
-   sort -k1 ${file:0:3}_count.txt | sed -i '1i length \t A \tC \t G \t T' > temp
+   sort -k1 ${file:0:3}_count.txt > temp
+   sed -i '1i length \t A \tC \t G \t T' temp
    mv temp $OUTPUT_DIR/${file:0:3}_count.txt
    chmod 700 $OUTPUT_DIR/${file:0:3}_count.txt
 done
