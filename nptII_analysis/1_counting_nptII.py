@@ -70,7 +70,6 @@ with open(sys.argv[1]) as input:
             else:
                 storage_field[position].add(line[0])
 
-f_result.write('length\tA\tC\tG\tT')
 for i in range(len(storage_field)):
     f_result.write(storage_field[i].print_result())
 
