@@ -16,10 +16,16 @@ OUTPUT_DIR=$PROJECT_DIR/nptII/counts # path to output sequences
 mkdir -p $OUTPUT_DIR
 cd $DATASET_DIR
 
+module add python34-modules-gcc
+module add python34-modules-intel
+
 for file in *.fasta
 do
-   # leaves sequences from fasta file, removes everything else, awk prints lengths of sequencs; uniq counts the sequences.
-   sed -n 'n;p;' $file | awk '{print length}' | sort | uniq -c > $OUTPUT_DIR/${file:0:3}_counts.txt
-   # chmod sets access right so that only owner can work with file
-   chmod 700 $OUTPUT_DIR/${file:0:3}_counts.txt
+   /storage/brno7-cerit/home/marek_bfu/smRNA/scripts/nptII/1_counting_nptII.py $file
+   sort -k1 ${file:0:3}_count.txt > temp
+   mv temp $OUTPUT_DIR/${file:0:3}_count.txt
+   chmod 700 $OUTPUT_DIR/${file:0:3}_count.txt
 done
+
+module unload python34-modules-gcc
+module unload python34-modules-intel
