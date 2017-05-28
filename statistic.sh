@@ -20,6 +20,6 @@ cd $DATASET_DIR
 for file in *.fastq.gz
 do
   gunzip -c $file | sed -n 'n;p;n;n;' > temp
-  echo 'number of raw sequences: ' `wc -l temp` '\t' >> ${file:0:5}_statistic.txt
+  echo 'number of raw sequences: ' `wc -l temp` '\t' >> statistic.txt
 done
-echo '\n' >> ${file:0:5}_statistic.txt
+echo '\n' >> statistic.txt
