@@ -21,7 +21,7 @@ mkdir -p $OUTPUT_DIR
 for file in *.txt
 do
   # switches the columns, the ',' is delimiter
-  awk '{ print $2 "," $1 }' $file > ${file:0:12}.csv
+  awk '{ print file "," print $2 "," $1 }' $file | sort -k2 > ${file:0:12}.csv
   mv ${file:0:12}.csv $OUTPUT_DIR
 done
 
@@ -29,7 +29,7 @@ done
 for file in *.txt
 do
   # switches the columns, the ',' is delimiter
-  ${file:0:5} >> smRNA_collapsed.csv
+  echo ${file:0:5} >> smRNA_collapsed.csv
   awk '{ print $2 "," $1 }' $file >> smRNA_collapsed.csv
   mv smRNA_collapsed.csv $OUTPUT_DIR
 done
