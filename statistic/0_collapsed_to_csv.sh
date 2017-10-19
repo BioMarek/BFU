@@ -12,7 +12,7 @@ PROJECT_DIR=/storage/brno7-cerit/home/marek_bfu/smRNA # path to project dir
 DATASET_DIR=$PROJECT_DIR//miRNA/collapsed # path to input sequences
 OUTPUT_DIR=$PROJECT_DIR/statistic/collapsed_csv
 
-#######################################################################################################################
+###############################################################################$
 ###SCRIPT BODY###
 cd $DATASET_DIR
 mkdir -p $OUTPUT_DIR
@@ -21,15 +21,6 @@ mkdir -p $OUTPUT_DIR
 for file in *.txt
 do
   # switches the columns, the ',' is delimiter
-  awk '{ print file "," print $2 "," $1 }' $file | sort -k2 > ${file:0:12}.csv
+  awk '{ print "'"${file:0:5}"'" "," $2 "," $1 }' $file | sort -k2 > ${file:0:12}.csv
   mv ${file:0:12}.csv $OUTPUT_DIR
-done
-
-# single file solution
-for file in *.txt
-do
-  # switches the columns, the ',' is delimiter
-  echo ${file:0:5} >> smRNA_collapsed.csv
-  awk '{ print $2 "," $1 }' $file >> smRNA_collapsed.csv
-  mv smRNA_collapsed.csv $OUTPUT_DIR
 done
