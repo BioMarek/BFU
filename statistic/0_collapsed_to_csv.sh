@@ -31,5 +31,5 @@ cat * > collapsed_smRNA.csv
 
 # add header, we have to go through temporary file because we cannot modify file and at the same time redirect 
 # output into it
-sed '1 i\sample, sequence, count collapsed_smRNA.csv> temp
+sed '1 i\sample,sequence,count' collapsed_smRNA.csv > temp
 mv temp collapsed_smRNA.csv
