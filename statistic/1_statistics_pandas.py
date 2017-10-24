@@ -4,6 +4,8 @@ import pandas as pd
 def basic_statistics(df):
     missing_in_sample = 0  # sequences that are missing in one of then samples
     in_all_samples = 0  # sequences that were found in all samples
+    sequence_count = 0
+    sequence_stored = ''  # stores currently counted sequenc
     for row in range(len(df)):
         sequence_count = 0
         sequence_stored = ''  # stores currently counted sequence
@@ -30,6 +32,8 @@ df = pd.read_csv('collapsed_smRNA.csv')
 print(df.head(n=30))
 df.sort_values(by='sequence', inplace=True)
 print(df.head(n=30))
+print(df.shape)
+print(df.info())
 a, b, c = basic_statistics(df)
 print('missing is: ', a, str(a/c), '%, complete is: ', b, str(b/c), '%.')
 
