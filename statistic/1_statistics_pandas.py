@@ -5,10 +5,8 @@ def basic_statistics(df):
     missing_in_sample = 0  # sequences that are missing in one of then samples
     in_all_samples = 0  # sequences that were found in all samples
     sequence_count = 0
-    sequence_stored = ''  # stores currently counted sequenc
+    sequence_stored = ''  # stores currently counted sequence
     for row in range(len(df)):
-        sequence_count = 0
-        sequence_stored = ''  # stores currently counted sequence
 
         if sequence_count == 0:
             sequence_stored = df.iloc[row, 1]
