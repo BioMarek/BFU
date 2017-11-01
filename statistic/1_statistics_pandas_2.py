@@ -13,6 +13,10 @@ class BasicStatistics:
         self.dedifferentiation_typical = 0  # number of sequences that are typical for dedifferentiation
         self.regeneration_typical = 0  # number of sequences that are typical for regeneration
         self.parental_plant_typical = 0  # number of sequences that are typical for plant
+        self.first_replicate = 0  # number of sequences that are typical for first technical replicate
+        self.second_replicate = 0  # number of sequences that are typical for second technical replicate
+        self.before_change = 0  # number of sequences that are typical before dediff. and reg.
+        self.after_change = 0  # number of sequences that are typical after dediff. and reg.
 
     def typical_for_plants(self):
         """"The function counts number of unique sequences that occur only in regenerated and parental plants"""
@@ -24,7 +28,7 @@ class BasicStatistics:
         if self.count_list == [False, False, True, True, True, True, True, True, False, False]:   # TODO check correctness make faster
             self.callus_typical = self.callus_typical = 1
 
-    def occurs_in_each_sample(self):
+    def typical_in_each_sample(self):
         """"The function counts number of unique sequences that occur in all samples"""
         if self.count_list == [True, True, True, True, True, True, True, True, True, True]:  # TODO check correctness make faster
             self.in_each_sample = self.in_each_sample + 1
@@ -43,7 +47,27 @@ class BasicStatistics:
         """The function counts sequences that occurs only in parental plants"""
         if self.count_list == [True, True, False, False, False, False, False, False, False, False]:  # TODO check correctness make faster
             self.parental_plant_typical = self.parental_plant_typical + 1
+            
+    def typical_for_first_replicate(self):
+        """The function counts sequences that occurs only in first technical replicate"""
+        if self.count_list == [True, False, True, False, True, False, True, False, True, False]:  # TODO check correctness make faster
+            self.first_replicate = self.first_replicate + 1
         
+    def typical_for_second_replicate(self):
+        """The function counts sequences that occurs only in second technical replicate"""
+        if self.count_list == [False, True, False, True, False, True, False, True, False, True]:  # TODO check correctness make faster
+            self.second_replicate = self.second_replicate + 1
+
+    def typical_before_change(self):
+        """The function counts sequences that occurs only before hormonal treatment"""
+        if self.count_list == [True, True, False, False, False, False, True, True, False, False]:  # TODO check correctness make faster
+            self.before_change = self.before_change + 1
+
+    def typical_after_change(self):
+        """The function counts sequences that occurs only after hormonal treatment"""
+        if self.count_list == [False, False, True, True, False, False, False, False, True, True]:  # TODO check correctness make faster
+            self.after_change = self.after_change + 1
+            
     def unique_df_length(self):
         pass
 
@@ -76,7 +100,7 @@ class BasicStatistics:
                 # print(self.count_list)  # TODO
                 self.typical_for_plants()
                 self.typical_for_callus()
-                self.occurs_in_each_sample()
+                self.typical_in_each_sample()
                 self.typical_for_dedifferentiation()
                 self.typical_for_regeneration()
                 self.typical_for_parental_plant()
