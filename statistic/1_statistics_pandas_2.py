@@ -10,28 +10,40 @@ class BasicStatistics:
         self.plant_typical = 0  # number of sequences that are typical only for parental and regenerated plants
         self.callus_typical = 0  # number of sequences that are typical only for callus passages
         self.in_each_sample = 0  # number of sequences that can be found in all samples
+        self.dedifferentiation_typical = 0  # number of sequences that are typical for dedifferentiation
+        self.regeneration_typical = 0  # number of sequences that are typical for regeneration
+        self.parental_plant_typical = 0  # number of sequences that are typical for plant
 
     def typical_for_plants(self):
         """"The function counts number of unique sequences that occur only in regenerated and parental plants"""
-        if (sum(self.count_list[0:2]) == sum(self.count_list[8:10]) == 2) and not (sum(self.count_list[2:8]) == 6):  # TODO check correctness
+        if self.count_list == [True, True, False, False, False, False, False, False, True, True]:  # TODO check correctness make faster
             self.plant_typical = self.plant_typical = 1
 
     def typical_for_callus(self):
         """"The function counts number of unique sequences that occur only in callus passages"""
-        if (sum(self.count_list[2:8]) == 6) and not (sum(self.count_list[0:2]) == sum(self.count_list[8:10]) == 2):   # TODO check correctness
+        if self.count_list == [False, False, True, True, True, True, True, True, False, False]:   # TODO check correctness make faster
             self.callus_typical = self.callus_typical = 1
 
     def occurs_in_each_sample(self):
         """"The function counts number of unique sequences that occur in all samples"""
-        if sum(self.count_list) == 10:  # TODO check correctness
+        if self.count_list == [True, True, True, True, True, True, True, True, True, True]:  # TODO check correctness make faster
             self.in_each_sample = self.in_each_sample + 1
 
     def typical_for_dedifferentiation(self):
-        pass
+        """"The function counts sequences that occurs only in first passage"""
+        if self.count_list == [False, False, True, True, False, False, False, False, False, False]:  # TODO check correctness make faster
+            self.dedifferentiation_typical = self.dedifferentiation_typical + 1
 
     def typical_for_regeneration(self):
-        pass
+        """"The function counts sequences that occurs only in regenerated plants"""
+        if self.count_list == [False, False, False, False, False, False, False, False, True, True]:  # TODO check correctness make faster
+            self.regeneration_typical = self.regeneration_typical + 1
 
+    def typical_for_parental_plant(self):
+        """The function counts sequences that occurs only in parental plants"""
+        if self.count_list == [True, True, False, False, False, False, False, False, False, False]:  # TODO check correctness make faster
+            self.parental_plant_typical = self.parental_plant_typical + 1
+        
     def unique_df_length(self):
         pass
 
@@ -46,6 +58,10 @@ class BasicStatistics:
         print('sequences typical for plants (H11 and REG): ' + str(self.plant_typical) + '. ' + str() + '%.')
         print('sequences typical for callus (P1, P3 and P8): ' + str(self.callus_typical) + '. ' + str() + '%.')
         print('sequences that occur in all samples: ' + str(self.in_each_sample) + '. ' + str() + '%.')
+        print('sequences that occur during dedifferentiation (P1): ' + str(self.dedifferentiation_typical) + '. ' + str() + '%.')
+        print('sequences that occur during regeneration (REG): ' + str(self.regeneration_typical) + '. ' + str() + '%.')
+        print('sequences typical only for parental plants (H11): ' + str(self.parental_plant_typical) + '. ' + str() + '%.')
+        
 
     def count(self, df):
         """"The function goes through dataframe and counts occurrence of sample for each sequence"""
@@ -61,6 +77,9 @@ class BasicStatistics:
                 self.typical_for_plants()
                 self.typical_for_callus()
                 self.occurs_in_each_sample()
+                self.typical_for_dedifferentiation()
+                self.typical_for_regeneration()
+                self.typical_for_parental_plant()
 
                 self.count_list = [0 for i in range(10)]  # list reset, when row = 0 it is also initialization
                 self.sequence_stored = df.iloc[row, 1]  # sets currently tested sequence
@@ -70,7 +89,7 @@ class BasicStatistics:
 
 
 
-df = pd.read_csv('collapsed_smRNA.csv')
+df = pd.read_csv('test.csv')
 print(df.head(n=30))
 df.sort_values(by='sequence', inplace=True)
 print(df.head(n=30))
