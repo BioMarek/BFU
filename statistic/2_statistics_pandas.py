@@ -7,6 +7,7 @@ class BasicStatistics:
         self.name_list = ['H11_A', 'H11_B', 'P1_A_', 'P1_B_', 'P3_A_', 'P3_B_', 'P8_A_', 'P8_B_', 'REG_A', 'REG_B']  # TODO make dictionary
         self.sequence_stored = ''
 
+        self.unique_count = 0  # counts number of unique sequences
         self.plant_typical = 0  # number of sequences that are typical only for parental and regenerated plants
         self.callus_typical = 0  # number of sequences that are typical only for callus passages
         self.in_each_sample = 0  # number of sequences that can be found in all samples
@@ -67,9 +68,6 @@ class BasicStatistics:
         """The function counts sequences that occurs only after hormonal treatment"""
         if self.count_list == [False, False, True, True, False, False, False, False, True, True]:
             self.after_change = self.after_change + 1
-            
-    def unique_df_length(self):
-        pass
 
     def test_name_list(self, row):
         """The function saves information about name of sample in currently tested row"""
@@ -78,18 +76,34 @@ class BasicStatistics:
                 self.count_list[i] = self.count_list[i] + 1
                 break
 
-    def print_statistics(self, length):  # TODO add percentual stats, save the results into file
-        print('sequences typical for plants (H11 and REG): ' + str(self.plant_typical) + '. ' + str() + '%.')
-        print('sequences typical for callus (P1, P3 and P8): ' + str(self.callus_typical) + '. ' + str() + '%.')
-        print('sequences that occur in all samples: ' + str(self.in_each_sample) + '. ' + str() + '%.')
-        print('sequences that occur after dedifferentiation (P1): ' + str(self.dedifferentiation_typical) + '. ' + str() + '%.')
-        print('sequences that occur after regeneration (REG): ' + str(self.regeneration_typical) + '. ' + str() + '%.')
-        print('sequences typical only for parental plants (H11): ' + str(self.parental_plant_typical) + '. ' + str() + '%.')
-        print('sequences typical only for first replicate (H11_A, P1_A, P3_A, P8_A, REG_A): ' + str(self.first_replicate) + '. ' + str() + '%.')
-        print('sequences typical only for second replicate (H11_B, P1_B, P3_B, P8_B, REG_B): ' + str(self.second_replicate) + '. ' + str() + '%.')
-        print('sequences typical before treatment (H11, P8): ' + str(self.before_change) + '. ' + str() + '%.')
-        print('sequences typical after treatment (P1, REG): ' + str(self.after_change) + '. ' + str() + '%.')
+    def print_statistics(self, length):  # TODO add percentual stats
+        """The function prints statistics results into file"""
+        print('sequences typical for plants (H11 and REG): ' + str(self.plant_typical) + '. ' + str(100 / self.unique_count * self.plant_typical) + '%.')
+        print('sequences typical for callus (P1, P3 and P8): ' + str(self.callus_typical) + '. ' + str(100 / self.unique_count * self.callus_typical) + '%.')
+        print('sequences that occur in all samples: ' + str(self.in_each_sample) + '. ' + str(100 / self.unique_count * self.in_each_sample) + '%.')
+        print('sequences that occur after dedifferentiation (P1): ' + str(self.dedifferentiation_typical) + '. ' + str(100 / self.unique_count * self.dedifferentiation_typical) + '%.')
+        print('sequences that occur after regeneration (REG): ' + str(self.regeneration_typical) + '. ' + str(100 / self.unique_count * self.regeneration_typical) + '%.')
+        print('sequences typical only for parental plants (H11): ' + str(self.parental_plant_typical) + '. ' + str(100 / self.unique_count * self.parental_plant_typical) + '%.')
+        print('sequences typical only for first replicate (H11_A, P1_A, P3_A, P8_A, REG_A): ' + str(self.first_replicate) + '. ' + str(100 / self.unique_count * self.first_replicate) + '%.')
+        print('sequences typical only for second replicate (H11_B, P1_B, P3_B, P8_B, REG_B): ' + str(self.second_replicate) + '. ' + str(100 / self.unique_count * self.second_replicate) + '%.')
+        print('sequences typical before treatment (H11, P8): ' + str(self.before_change) + '. ' + str(100 / self.unique_count * self.before_change) + '%.')
+        print('sequences typical after treatment (P1, REG): ' + str(self.after_change) + '. ' + str(100 / self.unique_count * self.after_change) + '%.')
         print('\n')
+
+    def save_statistics(self, length):  # TODO add percentual stats
+        """The function saves statistics results into file"""
+        f = open('result.txt', 'w')
+        f.write('sequences typical for plants (H11 and REG): ' + str(self.plant_typical) + '. ' + str(100 / self.unique_count * self.plant_typical) + '%.')
+        f.write('sequences typical for callus (P1, P3 and P8): ' + str(self.callus_typical) + '. ' + str(100 / self.unique_count * self.callus_typical) + '%.')
+        f.write('sequences that occur in all samples: ' + str(self.in_each_sample) + '. ' + str(100 / self.unique_count * self.in_each_sample) + '%.')
+        f.write('sequences that occur after dedifferentiation (P1): ' + str(self.dedifferentiation_typical) + '. ' + str(100 / self.unique_count * self.dedifferentiation_typical) + '%.')
+        f.write('sequences that occur after regeneration (REG): ' + str(self.regeneration_typical) + '. ' + str(100 / self.unique_count * self.regeneration_typical) + '%.')
+        f.write('sequences typical only for parental plants (H11): ' + str(self.parental_plant_typical) + '. ' + str(100 / self.unique_count * self.parental_plant_typical) + '%.')
+        f.write('sequences typical only for first replicate (H11_A, P1_A, P3_A, P8_A, REG_A): ' + str(self.first_replicate) + '. ' + str(100 / self.unique_count * self.first_replicate) + '%.')
+        f.write('sequences typical only for second replicate (H11_B, P1_B, P3_B, P8_B, REG_B): ' + str(self.second_replicate) + '. ' + str(100 / self.unique_count * self.second_replicate) + '%.')
+        f.write('sequences typical before treatment (H11, P8): ' + str(self.before_change) + '. ' + str(100 / self.unique_count * self.before_change) + '%.')
+        f.write('sequences typical after treatment (P1, REG): ' + str(self.after_change) + '. ' + str(100 / self.unique_count * self.after_change) + '%.')
+        f.close()
 
     def count(self, df):
         """"The function goes through dataframe and counts occurrence of sample for each sequence"""
@@ -97,12 +111,13 @@ class BasicStatistics:
 
             if row % 10000 == 0:  # TODO
                 print('testing row: ', row, 'from: ', len(df))  # TODO
-                self.print_statistics(len(df))  # TODO
+                #self.print_statistics(len(df))  # TODO
 
             if df.iloc[row, 1] == self.sequence_stored:
                 self.test_name_list(row)
             else:
-                print(self.count_list, self.sequence_stored)  # TODO
+                # print(self.count_list, self.sequence_stored)  # TODO
+                self.unique_count = self.unique_count + 1
                 self.typical_for_plants()
                 self.typical_for_callus()
                 self.typical_in_each_sample()
@@ -122,7 +137,7 @@ class BasicStatistics:
 
 
 
-df = pd.read_csv('test.csv')
+df = pd.read_csv('collapsed_smRNA.csv')
 print(df.head(n=30))
 df.sort_values(by='sequence', inplace=True)
 print(df.head(n=30))
