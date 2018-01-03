@@ -19,61 +19,96 @@ class BasicStatistics:
         self.before_change = 0  # number of sequences that are typical before dediff. and reg.
         self.after_change = 0  # number of sequences that are typical after dediff. and reg.
 
+    def pattern_generator(self):
+        """
+        The function will generate all the possible combinations of samples
+        :return: list of lists containing combinations
+        """
+        # TODO remove all false first combination
+        size = 5
+        binary_set = [0 for x in range(size)]
+        final_set = []
+
+        def calc(pow_set):
+            for i in range(len(pow_set)):
+                if binary_set[i] == 2:
+                    binary_set[i] = 0
+                    # protection from reaching out of index range
+                    if i < len(binary_set) - 1:
+                        binary_set[i + 1] += 1
+
+        def convert(pow_set):
+            converted_set = []
+            for i in range(len(pow_set)):
+                if pow_set[i] == 1:
+                    converted_set.append(True)
+                    converted_set.append(True)
+                else:
+                    converted_set.append(False)
+                    converted_set.append(False)
+            final_set.append(converted_set)
+
+        for i in range(2 ** size):
+            convert(binary_set)
+            binary_set[0] += 1
+            calc(binary_set)
+        return final_set
+
     def typical_for_plants(self):
         """"The function counts number of unique sequences that occur only in regenerated and parental plants"""
         if self.count_list == [True, True, False, False, False, False, False, False, True, True]:
-            self.plant_typical = self.plant_typical + 1
+            self.plant_typical += 1
 
     def typical_for_callus(self):
         """"The function counts number of unique sequences that occur only in callus passages"""
         if self.count_list == [False, False, True, True, True, True, True, True, False, False]:
-            self.callus_typical = self.callus_typical + 1
+            self.callus_typical += 1
 
     def typical_in_each_sample(self):
         """"The function counts number of unique sequences that occur in all samples"""
         if self.count_list == [True, True, True, True, True, True, True, True, True, True]:
-            self.in_each_sample = self.in_each_sample + 1
+            self.in_each_sample += 1
 
     def typical_for_dedifferentiation(self):
         """"The function counts sequences that occurs only in first passage"""
         if self.count_list == [False, False, True, True, False, False, False, False, False, False]:
-            self.dedifferentiation_typical = self.dedifferentiation_typical + 1
+            self.dedifferentiation_typical += 1
 
     def typical_for_regeneration(self):
         """"The function counts sequences that occurs only in regenerated plants"""
         if self.count_list == [False, False, False, False, False, False, False, False, True, True]:
-            self.regeneration_typical = self.regeneration_typical + 1
+            self.regeneration_typical += 1
 
     def typical_for_parental_plant(self):
         """The function counts sequences that occurs only in parental plants"""
         if self.count_list == [True, True, False, False, False, False, False, False, False, False]:
-            self.parental_plant_typical = self.parental_plant_typical + 1
+            self.parental_plant_typical += 1
             
     def typical_for_first_replicate(self):
         """The function counts sequences that occurs only in first technical replicate"""
         if self.count_list == [True, False, True, False, True, False, True, False, True, False]:
-            self.first_replicate = self.first_replicate + 1
+            self.first_replicate += 1
         
     def typical_for_second_replicate(self):
         """The function counts sequences that occurs only in second technical replicate"""
         if self.count_list == [False, True, False, True, False, True, False, True, False, True]:
-            self.second_replicate = self.second_replicate + 1
+            self.second_replicate += 1
 
     def typical_before_change(self):
         """The function counts sequences that occurs only before hormonal treatment"""
         if self.count_list == [True, True, False, False, False, False, True, True, False, False]:
-            self.before_change = self.before_change + 1
+            self.before_change += 1
 
     def typical_after_change(self):
         """The function counts sequences that occurs only after hormonal treatment"""
         if self.count_list == [False, False, True, True, False, False, False, False, True, True]:
-            self.after_change = self.after_change + 1
+            self.after_change += 1
 
     def test_name_list(self, row):
         """The function saves information about name of sample in currently tested row"""
         for i in range(len(self.name_list)):
             if df.iloc[row, 0] == self.name_list[i]:
-                self.count_list[i] = self.count_list[i] + 1
+                self.count_list[i] += 1
                 break
 
     def print_statistics(self):
@@ -119,7 +154,7 @@ class BasicStatistics:
                 self.test_name_list(row)
             else:
                 # print(self.count_list, self.sequence_stored)  # TODO
-                self.unique_count = self.unique_count + 1
+                self.unique_count += 1
                 self.typical_for_plants()
                 self.typical_for_callus()
                 self.typical_in_each_sample()
@@ -136,6 +171,7 @@ class BasicStatistics:
                 self.test_name_list(row)
         else:
             self.print_statistics()  # when the counting ends the final statistics is printed
+            self.save_statistics()
 
 
 df = pd.read_csv('collapsed_smRNA.csv')
