@@ -9,39 +9,49 @@ class BasicStatistics:
         self.unique_count = 0  # counts number of unique sequences
         self.size = 5  # number of biological replicates
         self.pattern_match_result = [0 for x in range(2 ** self.size)]  # generates list to store results from pattern matching
+        self.set_of_patterns = []
 
     def pattern_generator(self):
         """
-        The function will generate all the possible combinations of samples
-        :return: list of lists containing combinations
+        The function will generate all the possible combinations of samples. Each combination composed from pairs
+        because we analyze technical duplicates.
+        :return: list of lists containing combinations.
         """
         # TODO remove all false first combination
         binary_set = [0 for x in range(self.size)]
         final_set = []
-
-        def calc(pow_set):
-            for i in range(len(pow_set)):
+        
+        """
+        The function checks sequence after addition of 1 if there is 2 it adds 1 to higher order.
+        """
+        def calculate(sequence):
+            for i in range(len(sequence)):
                 if binary_set[i] == 2:
                     binary_set[i] = 0
                     # protection from reaching out of index range
                     if i < len(binary_set) - 1:
                         binary_set[i + 1] += 1
 
-        def convert(pow_set):
+        """
+        The function converts each number in sequence into two same numbers.
+        """
+        def convert(sequence):
             converted_set = []
-            for i in range(len(pow_set)):
-                if pow_set[i] == 1:
-                    converted_set.append(True)
-                    converted_set.append(True)
+            for i in range(len(sequence)):
+                if sequence[i] == 1:
+                    converted_set.append(1)
+                    converted_set.append(1)
                 else:
-                    converted_set.append(False)
-                    converted_set.append(False)
+                    converted_set.append(0)
+                    converted_set.append(0)
             final_set.append(converted_set)
 
         for i in range(2 ** self.size):
             convert(binary_set)
             binary_set[0] += 1
-            calc(binary_set)
+            calculate(binary_set)
+            
+        self.set_of_patterns = final_set  # saves pattern set so we can use in result presentation
         return final_set
 
     def match_to_pattern(self, pattern_list):
@@ -78,11 +88,16 @@ class BasicStatistics:
                 self.sequence_stored = df.iloc[row, 1]  # sets currently tested sequence
                 self.test_name_list(row)
         else:
-            print(self.pattern_match_result)
+            result_file = open('statistics_result.txt', 'w')
+            for i in range(len(self.set_of_patterns)):
+                print(str(self.set_of_patterns[i]) + ' : ' + str(self.pattern_match_result[i]) + '\n')
+                result_file.write(str(self.set_of_patterns[i]) + ' : ' + str(self.pattern_match_result[i]) + '\n')
+
+            result_file.close()
 
 
 df = pd.read_csv('collapsed_smRNA.csv')
-#df = pd.read_csv('test.csv')
+#df = pd.read_csv('test.csv')  # TODO
 print(df.head(n=30))
 df.sort_values(by='sequence', inplace=True)
 print(df.head(n=30))
