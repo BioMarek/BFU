@@ -20,7 +20,7 @@ for c, k in zip(colors, yticks):
     xs = np.arange(48)  # number of different lengts is 48
     ys = lengths[k]
 
-    cs = [c] * len(xs)  # setting color for all bars for specific passage 
+    cs = [c] * len(xs)  # setting color for all bars for specific passage
 
     # Plot the bar graph given by xs and ys on the plane y=k with 80% opacity.
     ax.bar(xs, ys, zs=k, zdir='y', color=cs, alpha=0.8)
@@ -32,4 +32,5 @@ ax.set_zlabel('count')
 ax.set_yticks(yticks)  # has to be here so there is correct number of lines on y axis
 plt.tick_params(axis='y', labelleft='off')  # removes yticks numbers from graph
 
+plt.savefig('length_distribution.png', bbox_inches='tight')  # saves picture as *.png without white margins around
 plt.show()
