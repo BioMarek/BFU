@@ -1192,14 +1192,21 @@ def main(argv=None):
             if settings.png:
                 results.plot(settings.png, dpi=settings.dpi)
 
+"""
+Computes standard molecule using 508 nucleotide long ACGT sequence. It will be use for comparison wit bended molecules
+"""
+def standard():
+    standardResult = CurvedDNA('ACGT' * 127, 'aawedge', name='Example')  # maximal length of molecule
+    standardResult.save_csv('standard.csv')
+    standardResult.plot('standard.png', dpi=160)
 
 MODELS = sorted((a for a in dir(Model)
                  if not a.startswith('_') and a.isupper()),
                 key=lambda x: getattr(Model, x)['name'])
 
 if __name__ == '__main__':
-    sys.exit(main())
-    # result = CurvedDNA('ATGCAAATTG'*5, 'trifonov', name='Example')
-    # print(result[6:9])
-    # result.save_csv('_test.csv')
-    # result.plot('_test.png', dpi=160)
+    # sys.exit(main())
+    standard()
+    result = CurvedDNA('ATGCAAATTG'*5, 'aawedge', name='Example')
+    result.save_csv('_test.csv')
+    result.plot('_test.png', dpi=160)
