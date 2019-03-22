@@ -1198,8 +1198,8 @@ MODELS = sorted((a for a in dir(Model)
                 key=lambda x: getattr(Model, x)['name'])
 
 if __name__ == '__main__':
-    # sys.exit(main())
-    result = CurvedDNA('ATGCAAATTG'*5, 'trifonov', name='Example')
-    print(result[6:9])
-    result.save_csv('_test.csv')
-    result.plot('_test.png', dpi=160)
+    sys.exit(main())
+    # result = CurvedDNA('ATGCAAATTG'*5, 'trifonov', name='Example')
+    # print(result[6:9])
+    # result.save_csv('_test.csv')
+    # result.plot('_test.png', dpi=160)
