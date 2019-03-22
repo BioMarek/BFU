@@ -1,5 +1,6 @@
 import csv
 import math
+import matplotlib
 
 
 """
@@ -29,8 +30,8 @@ def extractFirstFosfateCoordinates(fileName):
 
 
 result = []
-windowSize = 20
-phosphateRows = extractFirstFosfateCoordinates('_test.csv')
+windowSize = 200
+phosphateRows = extractFirstFosfateCoordinates('743.csv')
 standardRows = extractFirstFosfateCoordinates('standard.csv')
 print(standardRows)
 standardDistance = calculateDistance(standardRows[0], standardRows[windowSize])
@@ -38,10 +39,15 @@ standardDistance = calculateDistance(standardRows[0], standardRows[windowSize])
 if len(phosphateRows) > windowSize:
     i = 0
     while len(phosphateRows) > windowSize + i:
-        result.append([i, windowSize + i, standardDistance / calculateDistance(phosphateRows[i], phosphateRows[i + windowSize])]) # standard/calculated distance
+        result.append([i, standardDistance / calculateDistance(phosphateRows[i], phosphateRows[i + windowSize])]) # standard/calculated distance
         #print(calculateDistance(phosphateRows[i], phosphateRows[i + windowSize]))
-        i += 1
+        i += 20
 
-print(result)
+f = open("result.txt", 'w')
+for i in result:
+    f.write(str(i[1]))
+    f.write('\n')
+
+f.close()
 
 
